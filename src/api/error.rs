@@ -1,13 +1,30 @@
 //! Our Error definition module
 
-use std::{error::Error as StdError, fmt::{Display, Formatter, Result as FmtResult}};
+use std::{
+    error::Error as StdError,
+    fmt::{Display, Formatter, Result as FmtResult},
+};
 
 /// Our public errors
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Error {
+    NoBrand,
+    BadBrand,
+    NoFamily,
+    BadFamily,
+    NoSubFamily,
+    BadSubFamily,
+    NoPinCount,
+    BadPinCount,
     UnknownPinCount(String),
+    NoFlashSize,
+    BadFlashSize,
     UnknownFlashSize(String),
+    NoPackageType,
+    BadPackageType,
     UnknownPackageType(String),
+    NoTemperatureRange,
+    BadTemperatureRange,
     UnknownTemperatureRange(String),
 }
 
@@ -16,12 +33,28 @@ impl Display for Error {
         use self::Error::*;
 
         match *self {
+            NoBrand => f.write_str("no brand found"),
+            BadBrand => f.write_str("brand was not 'stm32'"),
+            NoFamily => f.write_str("no family found"),
+            BadFamily => f.write_str("family was not alphabetic"),
+            NoSubFamily => f.write_str("no sub-family found"),
+            BadSubFamily => f.write_str("sub-family was not digit"),
+            NoPinCount => f.write_str("no pin count found"),
+            BadPinCount => f.write_str("pin count was not alphabetic"),
             UnknownPinCount(ref code) => write!(f, "pin count code '{}' unknown", code),
+            NoFlashSize => f.write_str("no flash size code"),
+            BadFlashSize => f.write_str("flash size was not a digit"),
             UnknownFlashSize(ref code) => write!(f, "flash size code '{}' unknown", code),
+            NoPackageType => f.write_str("no package type code found"),
+            BadPackageType => f.write_str("package type was not a alphabetic"),
             UnknownPackageType(ref code) => write!(f, "package type code '{}' unknown", code),
-            UnknownTemperatureRange(ref code) => write!(f, "temperature range code '{}' unknown", code),
+            NoTemperatureRange => f.write_str("no temperature range code found"),
+            BadTemperatureRange => f.write_str("temperature range was not a digit"),
+            UnknownTemperatureRange(ref code) => {
+                write!(f, "temperature range code '{}' unknown", code)
+            }
         }
     }
 }
 
-impl StdError for Error { }
+impl StdError for Error {}

@@ -26,7 +26,12 @@ mod tests {
     macro_rules! decode {
         ( $name:tt, $code:tt, $size:tt) => {
             #[test]
-            fn $name() { assert_eq!(FlashSize::from_flash_size_str($code).unwrap(), FlashSize($size)); }
+            fn $name() {
+                assert_eq!(
+                    FlashSize::from_flash_size_str($code).unwrap(),
+                    FlashSize($size)
+                );
+            }
         };
     }
     decode!(decode_4_as_16_kb, "4", 16);

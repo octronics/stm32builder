@@ -5,7 +5,7 @@ use crate::api::Error;
 macro_rules! define_package {
     ( $($package:tt as $type:tt => { $( $pin:tt => $PACKAGE:tt, )+ }, )+ ) => {
 
-        /// The possible device packaging 
+        /// The possible device packaging
         /// Encoded as the pair of the 10th caracter (for the pin count) and the 11th character
         /// (for the package type) of the device identification number.
         #[derive(Debug, Clone, PartialEq)]
