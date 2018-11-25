@@ -1,0 +1,8 @@
+[package]
+name = "stm32builder"
+description = "A tool to build stm32 HAL"
+version = "0.0.0"
+authors = ["OCTronics <octronics@riseup.net>"]
+edition = "2018"
+
+[dependencies]
