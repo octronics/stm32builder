@@ -6,6 +6,7 @@ use std::{error::Error as StdError, fmt::{Display, Formatter, Result as FmtResul
 #[derive(Debug)]
 pub enum Error {
     UnknownFlashSize(String),
+    UnknownTemperatureRange(String),
 }
 
 impl Display for Error {
@@ -14,6 +15,7 @@ impl Display for Error {
 
         match *self {
             UnknownFlashSize(ref code) => write!(f, "flash size code '{}' unknown", code),
+            UnknownTemperatureRange(ref code) => write!(f, "temperature range code '{}' unknown", code),
         }
     }
 }
