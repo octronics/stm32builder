@@ -37,24 +37,26 @@ impl Convertible for DeviceIn {
     }
 }
 
+impl DeviceIn {
+    /// Get a device input from a file
+    pub fn from_file(device: &File) -> Result<DeviceIn, Error> {
+        serde_yaml::from_reader(device).map_err(|e| Error::ParseError(e))
+    }
+}
+
 /// An stm32 device.
 // NOTE: It is our user facing entry point.
 pub struct Device;
 impl Device {
     /// Get a device from its device file (if the id match the `name` key on the device).
     pub fn from_id_and_file(id: &DeviceId, device: &File) -> Result<DeviceOut, Error> {
-        // First deserialize the device file.
-        let device: DeviceIn = serde_yaml::from_reader(device).map_err(|e| Error::ParseError(e))?;
+        let device = DeviceIn::from_file(&device)?;
 
-        // Then check if the two match
         if id.name() != device.name {
             return Err(Error::NoMatchFound);
         }
 
-        // Finaly convert to output device.
-        let device = device.to_output(&id, &device);
-
-        Ok(device)
+        Ok(device.to_output(&id, &device))
     }
 }
 

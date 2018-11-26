@@ -10,6 +10,7 @@ help:
 # 'tests/' on expected file names.
 update-expected-tests:
 	cargo run -- decode stm32f051R8T6 > tests/expected/decode_stm32f051R8T6_stdout.txt
+	cargo run -- parse tests/stm32f051.yaml > tests/expected/parse_stm32f051.yaml_stdout.txt
 	cargo run -- show stm32f051R8T6 tests/stm32f051.yaml > tests/expected/show_stm32f051R8T6_stm32f051.yaml_stdout.txt
 	-cargo run -- show stm32l042R8T6 tests/stm32f051.yaml > tests/expected/show_stm32l042R8T6_stm32f051.yaml_stdout.txt
 	cargo run -- show stm32f051R8T6 tests/stm32f051.yaml device > tests/expected/show_stm32f051R8T6_stm32f051.yaml_device_stdout.txt

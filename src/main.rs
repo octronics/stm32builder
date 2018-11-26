@@ -5,11 +5,13 @@ use std::{
     env, env::Args, error::Error, fmt::{Display, Formatter, Result as FmtResult},
     fs::File,
 };
-use stm32builder::{DeviceId, Device};
+use stm32builder::{DeviceId, Device, device::DeviceIn};
 
 fn usage() {
     println!("Available commands:");
     println!("   decode <id>   - Decode an device identification number");
+    println!("   parse <device>");
+    println!("                 - Print the parsed data found on <device> file before being converted");
     println!("   show <id> <device> [device|info]");
     println!("                 - Show device informations from <device> file that match <id> device");
     println!("                   Select 'device' to show all data (the default), 'info' for device informations only");
@@ -18,6 +20,7 @@ fn usage() {
 
 enum Cmd {
     Decode { id: DeviceId },
+    Parse { device: File },
     Show { id: DeviceId, device: File, data: Data },
     Help,
 }
@@ -43,6 +46,10 @@ fn main() -> Result<(), Box<dyn Error>> {
                 id.temperature.min, id.temperature.max
             );
             Ok(())
+        }
+        Parse { device } => {
+            let device = DeviceIn::from_file(&device)?;
+            Ok(println!("{:#?}", device))
         }
         Show { id, device, data } => {
             let device = Device::from_id_and_file(&id, &device)?;
@@ -77,6 +84,9 @@ impl Cmd {
                 id: DeviceId::from_str(&args[2])?,
             }),
             "help" => Ok(Help),
+            "parse" => Ok(Parse {
+                device: File::open(&args[2])?,
+            }),
             "show" => Ok(Show {
                 id: DeviceId::from_str(&args[2])?,
                 device: File::open(&args[3])?,

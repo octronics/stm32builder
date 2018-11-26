@@ -1,0 +1,129 @@
+DeviceIn {
+    name: "stm32f051",
+    info: DeviceInfoIn {
+        datasheet: "https://somewhere.org/",
+        reference: "https://somewhereelse.org/",
+        svd: "stm32f0x1"
+    },
+    parts: [
+        DevicePartIn {
+            name: Part(
+                "K4"
+            ),
+            ram: RamSize(
+                8
+            ),
+            packages: [
+                LQFP32,
+                UFQFPN32
+            ]
+        },
+        DevicePartIn {
+            name: Part(
+                "K6"
+            ),
+            ram: RamSize(
+                8
+            ),
+            packages: [
+                LQFP32,
+                UFQFPN32
+            ]
+        },
+        DevicePartIn {
+            name: Part(
+                "K8"
+            ),
+            ram: RamSize(
+                8
+            ),
+            packages: [
+                LQFP32,
+                UFQFPN32
+            ]
+        },
+        DevicePartIn {
+            name: Part(
+                "T8"
+            ),
+            ram: RamSize(
+                8
+            ),
+            packages: [
+                WLCSP36
+            ]
+        },
+        DevicePartIn {
+            name: Part(
+                "C4"
+            ),
+            ram: RamSize(
+                8
+            ),
+            packages: [
+                LQFP48,
+                UFQFPN48
+            ]
+        },
+        DevicePartIn {
+            name: Part(
+                "C6"
+            ),
+            ram: RamSize(
+                8
+            ),
+            packages: [
+                LQFP48,
+                UFQFPN48
+            ]
+        },
+        DevicePartIn {
+            name: Part(
+                "C8"
+            ),
+            ram: RamSize(
+                8
+            ),
+            packages: [
+                LQFP48,
+                UFQFPN48
+            ]
+        },
+        DevicePartIn {
+            name: Part(
+                "R4"
+            ),
+            ram: RamSize(
+                8
+            ),
+            packages: [
+                LQFP64,
+                UFBGA64
+            ]
+        },
+        DevicePartIn {
+            name: Part(
+                "R6"
+            ),
+            ram: RamSize(
+                8
+            ),
+            packages: [
+                LQFP64,
+                UFBGA64
+            ]
+        },
+        DevicePartIn {
+            name: Part(
+                "R8"
+            ),
+            ram: RamSize(
+                8
+            ),
+            packages: [
+                LQFP64,
+                UFBGA64
+            ]
+        }
+    ]
+}
