@@ -1,8 +1,10 @@
 //! Device module
 
-use crate::{api::Convertible, types::DeviceId};
+use crate::{
+    api::{Convertible, Error},
+    types::DeviceId,
+};
 use serde_derive::Deserialize;
-use serde_yaml::Error as YamlError;
 use std::fs::File;
 
 /// The input device.
@@ -37,11 +39,17 @@ impl Convertible for DeviceIn {
 // NOTE: It is our user facing entry point.
 pub struct Device;
 impl Device {
-    pub fn from_id_and_file(id: &DeviceId, device: &File) -> Result<DeviceOut, YamlError> {
+    /// Get a device from its device file (if the id match the `name` key on the device).
+    pub fn from_id_and_file(id: &DeviceId, device: &File) -> Result<DeviceOut, Error> {
         // First deserialize the device file.
-        let device: DeviceIn = serde_yaml::from_reader(device)?;
+        let device: DeviceIn = serde_yaml::from_reader(device).map_err(|e| Error::ParseError(e))?;
 
-        // Then convert to output device.
+        // Then check if the two match
+        if id.name() != device.name {
+            return Err(Error::NoMatchFound);
+        }
+
+        // Finaly convert to output device.
         let device = device.to_output(&id, &device);
 
         Ok(device)

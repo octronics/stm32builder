@@ -1,12 +1,13 @@
 //! Our Error definition module
 
+use serde_yaml::Error as YamlError;
 use std::{
     error::Error as StdError,
     fmt::{Display, Formatter, Result as FmtResult},
 };
 
 /// Our public errors
-#[derive(Debug, PartialEq)]
+#[derive(Debug)]
 pub enum Error {
     NoBrand,
     BadBrand,
@@ -26,6 +27,8 @@ pub enum Error {
     NoTemperatureRange,
     BadTemperatureRange,
     UnknownTemperatureRange(String),
+    ParseError(YamlError),
+    NoMatchFound,
 }
 
 impl Display for Error {
@@ -53,6 +56,8 @@ impl Display for Error {
             UnknownTemperatureRange(ref code) => {
                 write!(f, "temperature range code '{}' unknown", code)
             }
+            ParseError(ref yaml) => yaml.fmt(f),
+            NoMatchFound => f.write_str("device id and device file does not match"),
         }
     }
 }

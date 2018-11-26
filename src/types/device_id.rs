@@ -135,20 +135,26 @@ mod tests {
         assert_eq!(id.temperature.max, 85);
     }
 
+    // NOTE: The match against error is a hack around the fact that Error must implement PartialEq
+    // for assert to work on but as we want to embed serde_yaml errors on it and this one doesn't
+    // implement PartialEq, we can't write `assert_eq!(..., Error::$error);` assertion.
     macro_rules! decoding_fail {
         ( $str:tt $error:ident $name:ident) => {
             #[test]
             pub fn $name() {
-                assert_eq!(DeviceId::from_str($str).err().unwrap(), Error::$error);
+                match DeviceId::from_str($str).err().unwrap() {
+                    Error::$error => {}
+                    _ => assert!(false, "expected {} error", stringify!($error)),
+                }
             }
         };
         ( $str:tt $error:ident($with:tt) $name:ident ) => {
             #[test]
             pub fn $name() {
-                assert_eq!(
-                    DeviceId::from_str($str).err().unwrap(),
-                    Error::$error($with.to_string())
-                );
+                match DeviceId::from_str($str).err().unwrap() {
+                    Error::$error(value) => assert_eq!(value, $with.to_string()),
+                    _ => assert!(false, "expected {} error", stringify!($error)),
+                }
             }
         };
     }
