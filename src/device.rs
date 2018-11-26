@@ -1,9 +1,12 @@
 //! Device module
 
 use crate::{api::Convertible, types::DeviceId};
+use serde_derive::Deserialize;
+use serde_yaml::Error as YamlError;
+use std::fs::File;
 
 /// The input device.
-#[derive(Debug)]
+#[derive(Debug, Deserialize)]
 pub struct DeviceIn {
     /// The device name this device file is for.
     pub name: String,
@@ -30,6 +33,21 @@ impl Convertible for DeviceIn {
     }
 }
 
+/// An stm32 device.
+// NOTE: It is our user facing entry point.
+pub struct Device;
+impl Device {
+    pub fn from_id_and_file(id: &DeviceId, device: &File) -> Result<DeviceOut, YamlError> {
+        // First deserialize the device file.
+        let device: DeviceIn = serde_yaml::from_reader(device)?;
+
+        // Then convert to output device.
+        let device = device.to_output(&id, &device);
+
+        Ok(device)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -42,6 +60,17 @@ mod tests {
         let id = DeviceId::from_str("stm32f051R8T6").unwrap();
 
         let device = device.to_output(&id, &device);
+
+        assert_eq!(device.id, id);
+        assert_eq!(device.name, "stm32f051");
+    }
+
+    #[test]
+    fn created_from_id_and_file() {
+        let device = File::open("tests/stm32f051.yaml").unwrap();
+        let id = DeviceId::from_str("stm32f051R8T6").unwrap();
+
+        let device = Device::from_id_and_file(&id, &device).unwrap();
 
         assert_eq!(device.id, id);
         assert_eq!(device.name, "stm32f051");
