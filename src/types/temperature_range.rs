@@ -4,7 +4,7 @@ use crate::api::Error;
 
 /// Temperature range allowed
 /// Encoded on the 12th character of the device identification number.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct TemperatureRange {
     pub min: i16,
     pub max: i16,

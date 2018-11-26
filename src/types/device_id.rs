@@ -16,7 +16,7 @@ use crate::{
 /// assert_eq!(id.part(), "R8");
 /// assert_eq!(id.package, Package::LQFP64);
 /// ```
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct DeviceId {
     pub id: String,
     pub package: Package,
@@ -171,4 +171,12 @@ mod tests {
     decoding_fail!( "stm32f051R8T"  NoTemperatureRange             error_without_temperature_range );
     decoding_fail!( "stm32f051R8TT" BadTemperatureRange            error_on_alphabetic_temperature_range );
     decoding_fail!( "stm32f051R8T0" UnknownTemperatureRange("0")   error_on_unknown_temperature_range );
+
+    #[test]
+    fn can_be_compared_against() {
+        assert_eq!(
+            DeviceId::from_str("stm32f051R8T6").unwrap(),
+            DeviceId::from_str("stm32f051R8T6").unwrap()
+        );
+    }
 }
