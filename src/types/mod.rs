@@ -3,6 +3,7 @@
 // NOTE: Re-export our types for convenience.
 pub use self::device_id::DeviceId;
 pub use self::flash_size::FlashSize;
+pub use self::others::Part;
 pub use self::others::RamSize;
 pub use self::package::Package;
 pub use self::temperature_range::TemperatureRange;
