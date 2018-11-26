@@ -3,9 +3,20 @@
 use crate::{
     api::Convertible,
     device::DeviceIn,
-    types::{DeviceId, FlashSize, Package, TemperatureRange},
+    types::{DeviceId, FlashSize, Package, Part, RamSize, TemperatureRange},
 };
 use serde_derive::Deserialize;
+
+/// One of the available parts under a device file.
+#[derive(Debug, Deserialize)]
+pub struct DevicePartIn {
+    /// The name of this part.
+    pub name: Part,
+    /// The memory on this part.
+    pub ram: RamSize,
+    /// All the available packages for this part.
+    pub packages: Vec<Package>,
+}
 
 /// Device information (from device file).
 #[derive(Debug, Deserialize)]
