@@ -33,11 +33,23 @@ pub fn valid_device_info_in() -> DeviceInfoIn {
     }
 }
 
+pub fn valid_part() -> Part {
+    Part("R8".to_owned())
+}
+
+pub fn valid_ram_size() -> RamSize {
+    RamSize(8)
+}
+
+pub fn valid_package() -> Package {
+    Package::LQFP64
+}
+
 pub fn valid_device_part_in() -> DevicePartIn {
     DevicePartIn {
-        name: Part("R8".to_owned()),
-        ram: RamSize(8),
-        packages: vec![Package::LQFP64, Package::UFBGA64],
+        name: valid_part(),
+        ram: valid_ram_size(),
+        packages: vec![valid_package(), Package::UFBGA64],
     }
 }
 
@@ -52,8 +64,10 @@ pub fn another_valid_device_part_in() -> DevicePartIn {
 pub fn expected_device_info_out() -> DeviceInfoOut {
     DeviceInfoOut {
         id: valid_device_id(),
+        part: valid_part(),
         package: valid_device_id().package,
         flash_size: valid_device_id().flash_size,
+        ram_size: valid_ram_size(),
         temperature: valid_device_id().temperature,
         datasheet: valid_device_info_in().datasheet,
         reference: valid_device_info_in().reference,

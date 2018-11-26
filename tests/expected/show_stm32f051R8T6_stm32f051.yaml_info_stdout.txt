@@ -10,9 +10,15 @@ DeviceInfoOut {
             max: 85
         }
     },
+    part: Part(
+        "R8"
+    ),
     package: LQFP64,
     flash_size: FlashSize(
         64
+    ),
+    ram_size: RamSize(
+        8
     ),
     temperature: TemperatureRange {
         min: -40,
