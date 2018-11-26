@@ -11,6 +11,7 @@ pub fn valid_device_in() -> DeviceIn {
     DeviceIn {
         name: "stm32f051".to_owned(),
         info: valid_device_info_in(),
+        parts: vec![valid_device_part_in(), another_valid_device_part_in()],
     }
 }
 
@@ -19,6 +20,22 @@ pub fn valid_device_info_in() -> DeviceInfoIn {
         datasheet: "https://somewhere.org/".to_owned(),
         reference: "https://somewhereelse.org/".to_owned(),
         svd: "stm32f0x1".to_owned(),
+    }
+}
+
+pub fn valid_device_part_in() -> DevicePartIn {
+    DevicePartIn {
+        name: Part("R8".to_owned()),
+        ram: RamSize(8),
+        packages: vec![Package::LQFP64, Package::UFBGA64],
+    }
+}
+
+pub fn another_valid_device_part_in() -> DevicePartIn {
+    DevicePartIn {
+        name: Part("C8".to_owned()),
+        ram: RamSize(8),
+        packages: vec![Package::LQFP48, Package::UFQFPN48],
     }
 }
 

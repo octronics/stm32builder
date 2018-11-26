@@ -2,7 +2,7 @@
 
 use crate::{
     api::{Convertible, Error},
-    device_info::{DeviceInfoIn, DeviceInfoOut},
+    device_info::{DeviceInfoIn, DeviceInfoOut, DevicePartIn},
     types::DeviceId,
 };
 use serde_derive::Deserialize;
@@ -15,6 +15,8 @@ pub struct DeviceIn {
     pub name: String,
     /// The device common information.
     pub info: DeviceInfoIn,
+    /// The available parts under this device name.
+    pub parts: Vec<DevicePartIn>,
 }
 
 /// The output device.
@@ -69,7 +71,6 @@ mod tests {
     fn output_device_informations() {
         assert_eq!(device_under_test().info, expected_device_info_out())
     }
-
     #[test]
     fn created_from_id_and_file() {
         let device = File::open("tests/stm32f051.yaml").unwrap();
