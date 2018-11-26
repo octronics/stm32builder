@@ -1,6 +1,16 @@
 DeviceOut {
-    id: DeviceId {
-        id: "stm32f051R8T6",
+    info: DeviceInfoOut {
+        id: DeviceId {
+            id: "stm32f051R8T6",
+            package: LQFP64,
+            flash_size: FlashSize(
+                64
+            ),
+            temperature: TemperatureRange {
+                min: -40,
+                max: 85
+            }
+        },
         package: LQFP64,
         flash_size: FlashSize(
             64
@@ -8,7 +18,9 @@ DeviceOut {
         temperature: TemperatureRange {
             min: -40,
             max: 85
-        }
-    },
-    name: "stm32f051"
+        },
+        datasheet: "https://somewhere.org/",
+        reference: "https://somewhereelse.org/",
+        svd: "stm32f0x1"
+    }
 }

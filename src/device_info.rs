@@ -19,7 +19,7 @@ pub struct DeviceInfoIn {
 }
 
 /// Device information (to template).
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct DeviceInfoOut {
     /// The device identifiant.
     pub id: DeviceId,

@@ -2,6 +2,7 @@
 
 use crate::{
     api::{Convertible, Error},
+    device_info::{DeviceInfoIn, DeviceInfoOut},
     types::DeviceId,
 };
 use serde_derive::Deserialize;
@@ -12,25 +13,24 @@ use std::fs::File;
 pub struct DeviceIn {
     /// The device name this device file is for.
     pub name: String,
+    /// The device common information.
+    pub info: DeviceInfoIn,
 }
 
 /// The output device.
 #[derive(Debug)]
 pub struct DeviceOut {
-    /// The device identifiant
-    pub id: DeviceId,
-    /// The device name (temporary).
-    pub name: String,
+    /// This device information.
+    pub info: DeviceInfoOut,
 }
 
 impl Convertible for DeviceIn {
     type Output = DeviceOut;
 
     /// Convert to outputable device.
-    fn to_output(&self, id: &DeviceId, _device: &DeviceIn) -> DeviceOut {
+    fn to_output(&self, id: &DeviceId, device: &DeviceIn) -> DeviceOut {
         DeviceOut {
-            id: id.clone(),
-            name: self.name.clone(),
+            info: self.info.to_output(&id, &device),
         }
     }
 }
@@ -60,17 +60,41 @@ impl Device {
 mod tests {
     use super::*;
 
+    fn valid_device_id() -> DeviceId {
+        DeviceId::from_str("stm32f051R8T6").unwrap()
+    }
+    fn valid_device_info_in() -> DeviceInfoIn {
+        DeviceInfoIn {
+            datasheet: "https://somewhere.org/".to_owned(),
+            reference: "https://somewhereelse.org/".to_owned(),
+            svd: "stm32f0x1".to_owned(),
+        }
+    }
+    fn valid_device_in() -> DeviceIn {
+        DeviceIn {
+            name: "stm32f051".to_owned(),
+            info: valid_device_info_in(),
+        }
+    }
+    fn expected_device_info_out() -> DeviceInfoOut {
+        DeviceInfoOut {
+            id: valid_device_id(),
+            package: valid_device_id().package,
+            flash_size: valid_device_id().flash_size,
+            temperature: valid_device_id().temperature,
+            datasheet: valid_device_info_in().datasheet,
+            reference: valid_device_info_in().reference,
+            svd: valid_device_info_in().svd,
+        }
+    }
+
+    fn device_under_test() -> DeviceOut {
+        valid_device_in().to_output(&valid_device_id(), &valid_device_in())
+    }
+
     #[test]
-    fn convert_to_output() {
-        let device = DeviceIn {
-            name: "stm32f051".to_string(),
-        };
-        let id = DeviceId::from_str("stm32f051R8T6").unwrap();
-
-        let device = device.to_output(&id, &device);
-
-        assert_eq!(device.id, id);
-        assert_eq!(device.name, "stm32f051");
+    fn output_device_informations() {
+        assert_eq!(device_under_test().info, expected_device_info_out())
     }
 
     #[test]
@@ -80,7 +104,6 @@ mod tests {
 
         let device = Device::from_id_and_file(&id, &device).unwrap();
 
-        assert_eq!(device.id, id);
-        assert_eq!(device.name, "stm32f051");
+        assert_eq!(device.info, expected_device_info_out());
     }
 }

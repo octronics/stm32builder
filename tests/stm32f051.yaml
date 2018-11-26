@@ -1,7 +1,7 @@
 name: stm32f051
 info:
-  datasheet:
-  reference:
+  datasheet: https://somewhere.org/
+  reference: https://somewhereelse.org/
   svd: stm32f0x1
 parts: # Page 11
   - { name: K4, ram: 8, packages: [ LQFP32, UFQFPN32 ] }
