@@ -59,34 +59,7 @@ impl Device {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    fn valid_device_id() -> DeviceId {
-        DeviceId::from_str("stm32f051R8T6").unwrap()
-    }
-    fn valid_device_info_in() -> DeviceInfoIn {
-        DeviceInfoIn {
-            datasheet: "https://somewhere.org/".to_owned(),
-            reference: "https://somewhereelse.org/".to_owned(),
-            svd: "stm32f0x1".to_owned(),
-        }
-    }
-    fn valid_device_in() -> DeviceIn {
-        DeviceIn {
-            name: "stm32f051".to_owned(),
-            info: valid_device_info_in(),
-        }
-    }
-    fn expected_device_info_out() -> DeviceInfoOut {
-        DeviceInfoOut {
-            id: valid_device_id(),
-            package: valid_device_id().package,
-            flash_size: valid_device_id().flash_size,
-            temperature: valid_device_id().temperature,
-            datasheet: valid_device_info_in().datasheet,
-            reference: valid_device_info_in().reference,
-            svd: valid_device_info_in().svd,
-        }
-    }
+    use crate::tests::*;
 
     fn device_under_test() -> DeviceOut {
         valid_device_in().to_output(&valid_device_id(), &valid_device_in())

@@ -11,3 +11,7 @@ pub mod device_info;
 // Internal use
 pub mod api;
 pub mod types;
+
+// Testing data
+#[cfg(test)]
+mod tests;
