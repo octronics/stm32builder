@@ -1,7 +1,7 @@
 //! Device informations
 
 use crate::{
-    api::Convertible,
+    api::{Convertible, Validatable},
     device::DeviceIn,
     types::{DeviceId, FlashSize, Package, Part, RamSize, TemperatureRange},
 };
@@ -72,9 +72,17 @@ impl DeviceInfoOut {
     }
 }
 
+impl Validatable for DevicePartIn {
+    /// Valid if its name and its package match the ones encoded on the device id.
+    fn is_valid_for(&self, id: &DeviceId, _device: &DeviceIn) -> bool {
+        self.name == Part(id.part().to_owned()) && self.packages.contains(&id.package)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::tests::*;
 
     fn output() -> DeviceInfoOut {
         let id = DeviceId::from_str("stm32f051R8T6").unwrap();
@@ -111,5 +119,16 @@ mod tests {
     #[test]
     fn output_a_svd() {
         assert_eq!(output().svd, "stm32f0x1".to_owned());
+    }
+
+    #[test]
+    fn part_is_valid_for_a_valid_device_id() {
+        assert!(valid_device_part_in().is_valid_for(&valid_device_id(), &valid_device_in()));
+        assert!(
+            !valid_device_part_in().is_valid_for(&another_valid_device_id(), &valid_device_in())
+        );
+        assert!(valid_device_part_in().is_valid_for(&valid_device_id(), &another_valid_device_in()));
+        assert!(!valid_device_part_in()
+            .is_valid_for(&another_valid_device_id(), &another_valid_device_in()));
     }
 }

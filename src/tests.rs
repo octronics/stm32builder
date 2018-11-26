@@ -6,12 +6,22 @@ use crate::{device::*, device_info::*, types::*};
 pub fn valid_device_id() -> DeviceId {
     DeviceId::from_str("stm32f051R8T6").unwrap()
 }
+pub fn another_valid_device_id() -> DeviceId {
+    DeviceId::from_str("stm32f051C8T6").unwrap()
+}
 
 pub fn valid_device_in() -> DeviceIn {
     DeviceIn {
         name: "stm32f051".to_owned(),
         info: valid_device_info_in(),
         parts: vec![valid_device_part_in(), another_valid_device_part_in()],
+    }
+}
+pub fn another_valid_device_in() -> DeviceIn {
+    DeviceIn {
+        name: "stm32f051".to_owned(),
+        info: valid_device_info_in(),
+        parts: vec![another_valid_device_part_in()],
     }
 }
 
