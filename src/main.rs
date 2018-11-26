@@ -1,20 +1,23 @@
+//! Tool to help building stm32 hal
+
 use self::Cmd::*;
 use std::{
-    env,
-    env::Args,
-    error::Error,
-    fmt::{Display, Formatter, Result as FmtResult},
+    env, env::Args, error::Error, fmt::{Display, Formatter, Result as FmtResult},
+    fs::File,
 };
-use stm32builder::DeviceId;
+use stm32builder::{DeviceId, Device};
 
 fn usage() {
     println!("Available commands:");
     println!("   decode <id>   - Decode an device identification number");
+    println!("   show <id> <device>");
+    println!("                 - Show device informations from <device> file that match <id> device");
     println!("   help          - Print this message");
 }
 
 enum Cmd {
     Decode { id: DeviceId },
+    Show { id: DeviceId, device: File },
     Help,
 }
 
@@ -35,6 +38,10 @@ fn main() -> Result<(), Box<dyn Error>> {
             );
             Ok(())
         }
+        Show { id, device } => {
+            let device = Device::from_id_and_file(&id, &device)?;
+            Ok(println!("{:#?}", device))
+        }
     }
 }
 
@@ -51,6 +58,10 @@ impl Cmd {
                 id: DeviceId::from_str(&args[2])?,
             }),
             "help" => Ok(Help),
+            "show" => Ok(Show {
+                id: DeviceId::from_str(&args[2])?,
+                device: File::open(&args[3])?,
+            }),
             cmd => Err(CliError::UnknownCommand(cmd.to_string()).into()),
         }
     }

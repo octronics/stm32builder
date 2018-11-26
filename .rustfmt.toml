@@ -1,0 +1,9 @@
+# NOTE: We ignore `main.rs` as it has long line on purpose and
+# `#[rustfmt::skip]` can't be applied to the whole crate, it require unstable
+# `#![feature(custom_inner_attributes)]` (tracking issue #54726).
+#
+# Idealy we want to configure the `max_width` option on a per `main.rs` file
+# basics.
+ignore = [
+   "src/main.rs"
+]
