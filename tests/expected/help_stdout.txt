@@ -1,3 +1,5 @@
 Available commands:
    decode <id>   - Decode an device identification number
+   show <id> <device>
+                 - Show device informations from <device> file that match <id> device
    help          - Print this message

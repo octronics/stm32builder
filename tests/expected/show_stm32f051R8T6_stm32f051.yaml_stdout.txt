@@ -1,0 +1,14 @@
+DeviceOut {
+    id: DeviceId {
+        id: "stm32f051R8T6",
+        package: LQFP64,
+        flash_size: FlashSize(
+            64
+        ),
+        temperature: TemperatureRange {
+            min: -40,
+            max: 85
+        }
+    },
+    name: "stm32f051"
+}
