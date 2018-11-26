@@ -1,0 +1,3 @@
+Available commands:
+   decode <id>   - Decode an device identification number
+   help          - Print this message

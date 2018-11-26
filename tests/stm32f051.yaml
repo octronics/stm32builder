@@ -1,0 +1,17 @@
+name: stm32f051
+info:
+  datasheet:
+  reference:
+  svd: stm32f0x1
+parts: # Page 11
+  - { name: K4, ram: 8, packages: [ LQFP32, UFQFPN32 ] }
+  - { name: K6, ram: 8, packages: [ LQFP32, UFQFPN32 ] }
+  - { name: K8, ram: 8, packages: [ LQFP32, UFQFPN32 ] }
+  - { name: T8, ram: 8, packages: [ WLCSP36 ] }
+  - { name: C4, ram: 8, packages: [ LQFP48, UFQFPN48 ] }
+  - { name: C6, ram: 8, packages: [ LQFP48, UFQFPN48 ] }
+  - { name: C8, ram: 8, packages: [ LQFP48, UFQFPN48 ] }
+  - { name: R4, ram: 8, packages: [ LQFP64, UFBGA64 ] }
+  - { name: R6, ram: 8, packages: [ LQFP64, UFBGA64 ] }
+  - { name: R8, ram: 8, packages: [ LQFP64, UFBGA64 ] }
+peripherals: {}
