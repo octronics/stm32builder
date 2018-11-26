@@ -6,6 +6,7 @@ pub use crate::types::DeviceId;
 
 // Input and output
 pub mod device;
+pub mod device_info;
 
 // Internal use
 pub mod api;
