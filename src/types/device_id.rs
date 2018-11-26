@@ -145,7 +145,10 @@ mod tests {
         ( $str:tt $error:ident($with:tt) $name:ident ) => {
             #[test]
             pub fn $name() {
-                assert_eq!(DeviceId::from_str($str).err().unwrap(), Error::$error($with.to_string()));
+                assert_eq!(
+                    DeviceId::from_str($str).err().unwrap(),
+                    Error::$error($with.to_string())
+                );
             }
         };
     }
