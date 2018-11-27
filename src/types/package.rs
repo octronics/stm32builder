@@ -1,7 +1,7 @@
 //! Device Package module
 
 use crate::api::Error;
-use serde_derive::Deserialize;
+use serde_derive::{Deserialize, Serialize};
 
 macro_rules! define_package {
     ( $($package:tt as $type:tt => { $( $pin:tt => $PACKAGE:tt, )+ }, )+ ) => {
@@ -9,7 +9,7 @@ macro_rules! define_package {
         /// The possible device packaging
         /// Encoded as the pair of the 10th caracter (for the pin count) and the 11th character
         /// (for the package type) of the device identification number.
-        #[derive(Debug, Clone, PartialEq, Deserialize)]
+        #[derive(Debug, Clone, PartialEq, Deserialize, Serialize)]
         pub enum Package {
             $($( $PACKAGE, )+)+
         }

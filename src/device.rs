@@ -5,7 +5,7 @@ use crate::{
     device_info::{DeviceInfoIn, DeviceInfoOut, DevicePartIn},
     types::DeviceId,
 };
-use serde_derive::Deserialize;
+use serde_derive::{Deserialize, Serialize};
 use std::fs::File;
 
 /// The input device.
@@ -20,7 +20,7 @@ pub struct DeviceIn {
 }
 
 /// The output device.
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
 pub struct DeviceOut {
     /// This device information.
     pub info: DeviceInfoOut,

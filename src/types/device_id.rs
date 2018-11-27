@@ -4,6 +4,7 @@ use crate::{
     api::Error,
     types::{FlashSize, Package, TemperatureRange},
 };
+use serde::ser::{Serialize, Serializer};
 
 /// The device identifiant number.
 ///
@@ -22,6 +23,16 @@ pub struct DeviceId {
     pub package: Package,
     pub flash_size: FlashSize,
     pub temperature: TemperatureRange,
+}
+
+impl Serialize for DeviceId {
+    /// Serialize DeviceId as a string.
+    fn serialize<S>(&self, serialize: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        serialize.serialize_str(&self.id)
+    }
 }
 
 // NOTE: We need the `$function(id)` for our own use and `$method(&self)` for use by the user.

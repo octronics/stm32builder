@@ -5,7 +5,7 @@ use crate::{
     device::DeviceIn,
     types::{DeviceId, FlashSize, Package, Part, RamSize, TemperatureRange},
 };
-use serde_derive::Deserialize;
+use serde_derive::{Deserialize, Serialize};
 
 /// One of the available parts under a device file.
 #[derive(Debug, Deserialize)]
@@ -30,7 +30,7 @@ pub struct DeviceInfoIn {
 }
 
 /// Device information (to template).
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Serialize)]
 pub struct DeviceInfoOut {
     /// The device identifiant.
     pub id: DeviceId,

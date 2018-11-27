@@ -1,10 +1,11 @@
 //! Temperature type module
 
 use crate::api::Error;
+use serde_derive::Serialize;
 
 /// Temperature range allowed
 /// Encoded on the 12th character of the device identification number.
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize)]
 pub struct TemperatureRange {
     pub min: i16,
     pub max: i16,

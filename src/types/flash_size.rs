@@ -1,10 +1,11 @@
 //! Flash size type module
 
 use crate::api::Error;
+use serde_derive::Serialize;
 
 /// Flash size a device can have
 /// Encoded on the 11th character on the device identification number.
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize)]
 pub struct FlashSize(pub u32);
 
 impl FlashSize {
