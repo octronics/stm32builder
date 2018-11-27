@@ -1,0 +1,12 @@
+---
+id: stm32f051R8T6
+part: R8
+package: LQFP64
+flash_size: 64
+ram_size: 8
+temperature:
+  min: -40
+  max: 85
+datasheet: "https://somewhere.org/"
+reference: "https://somewhereelse.org/"
+svd: stm32f0x1

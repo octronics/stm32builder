@@ -5,4 +5,6 @@ Available commands:
    show <id> <device> [device|info]
                  - Show device informations from <device> file that match <id> device
                    Select 'device' to show all data (the default), 'info' for device informations only
+   print <id> <device> [device|info]
+                 - Print device information as passed to template
    help          - Print this message

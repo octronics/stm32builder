@@ -40,3 +40,6 @@ assert_stdout!(main_can_show_a_device: "show" "stm32f051R8T6" "stm32f051.yaml" )
 assert_stdout!(main_fail_to_show_unmatch_device: "show" "stm32l042R8T6" "stm32f051.yaml" ); // not real id
 assert_stdout!(main_can_show_the_whole_device: "show" "stm32f051R8T6" "stm32f051.yaml" "device" );
 assert_stdout!(main_can_show_the_whole_info: "show" "stm32f051R8T6" "stm32f051.yaml" "info" );
+assert_stdout!(main_can_print_a_device: "print" "stm32f051R8T6" "stm32f051.yaml" );
+assert_stdout!(main_can_print_the_whole_device: "print" "stm32f051R8T6" "stm32f051.yaml" "device" );
+assert_stdout!(main_can_print_the_info: "print" "stm32f051R8T6" "stm32f051.yaml" "info" );

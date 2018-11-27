@@ -15,6 +15,8 @@ fn usage() {
     println!("   show <id> <device> [device|info]");
     println!("                 - Show device informations from <device> file that match <id> device");
     println!("                   Select 'device' to show all data (the default), 'info' for device informations only");
+    println!("   print <id> <device> [device|info]");
+    println!("                 - Print device information as passed to template");
     println!("   help          - Print this message");
 }
 
@@ -22,6 +24,7 @@ enum Cmd {
     Decode { id: DeviceId },
     Parse { device: File },
     Show { id: DeviceId, device: File, data: Data },
+    Print { id: DeviceId, device: File, data: Data },
     Help,
 }
 
@@ -58,6 +61,13 @@ fn main() -> Result<(), Box<dyn Error>> {
                 Data::Info => Ok(println!("{:#?}", device.info)),
             }
         }
+        Print { id, device, data } => {
+            let device = Device::from_id_and_file(&id, &device)?;
+            Ok(println!("{}", match data {
+                Data::Device => serde_yaml::to_string(&device)?,
+                Data::Info => serde_yaml::to_string(&device.info)?,
+            }))
+        }
     }
 }
 
@@ -91,6 +101,11 @@ impl Cmd {
                 id: DeviceId::from_str(&args[2])?,
                 device: File::open(&args[3])?,
                 data: args.get(4).map_or(Ok(Data::Device), |arg| Data::from_arg(arg))?,
+            }),
+            "print" => Ok(Print {
+                id: DeviceId::from_str(&args[2])?,
+                device: File::open(&args[3])?,
+                data: args.get(4).map_or(Data::Device, |arg| Data::from_arg(arg).unwrap()),
             }),
             cmd => Err(CliError::UnknownCommand(cmd.to_string()).into()),
         }
