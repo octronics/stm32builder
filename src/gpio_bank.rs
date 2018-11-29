@@ -1,10 +1,10 @@
 //! Gpio bank input and output types
 
 use crate::{
-    api::Convertible,
+    api::{Convertible, Validatable},
     device::DeviceIn,
     gpio_pin::{GpioPinIn, GpioPinOut},
-    types::DeviceId,
+    types::{DeviceId, Valid},
 };
 use serde::de::{Deserialize, Deserializer};
 use serde_derive::{Deserialize, Serialize};
@@ -17,6 +17,9 @@ pub struct GpioBankIn {
     /// The gpio bank pins.
     #[serde(deserialize_with = "seq_of_pins_as_string_or_struct")]
     pub pins: Vec<GpioPinIn>,
+    /// This gpio bank is valid
+    #[serde(flatten)]
+    pub valid: Valid,
 }
 
 /// A gpio bank (to template).
@@ -42,9 +45,16 @@ impl Convertible for GpioBankIn {
             pins: self
                 .pins
                 .iter()
+                .filter(|pin| pin.is_valid_for(&id, &device))
                 .map(|pin| pin.to_output(&id, &device))
                 .collect(),
         }
+    }
+}
+
+impl Validatable for GpioBankIn {
+    fn is_valid_for(&self, id: &DeviceId, device: &DeviceIn) -> bool {
+        self.valid.is_valid_for(&id, &device)
     }
 }
 
@@ -82,6 +92,7 @@ mod tests {
                     valid: Valid::default(),
                 },
             ],
+            valid: Valid::default(),
         }
         .to_output(&valid_device_id(), &valid_device_in())
     }

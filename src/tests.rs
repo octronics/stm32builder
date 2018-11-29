@@ -121,6 +121,7 @@ pub fn valid_gpio_banks() -> Vec<GpioBankIn> {
                     valid: valid_for_all(),
                 },
             ],
+            valid: Valid::default(),
         },
     ]
 }
@@ -130,20 +131,12 @@ pub fn expected_gpio_banks() -> Vec<GpioBankOut> {
         GpioBankOut {
             GPIO: "GPIOB".to_owned(),
             gpio: "gpiob".to_owned(),
-            pins: vec![
-                GpioPinOut {
-                    PIN: "PB0".to_owned(),
-                    pin: "pb0".to_owned(),
-                    n: 0,
-                    initial_mode: "Input<Floating>".to_owned(),
-                },
-                GpioPinOut {
-                    PIN: "PB1".to_owned(),
-                    pin: "pb1".to_owned(),
-                    n: 1,
-                    initial_mode: "Input<Floating>".to_owned(),
-                },
-            ],
+            pins: vec![GpioPinOut {
+                PIN: "PB1".to_owned(),
+                pin: "pb1".to_owned(),
+                n: 1,
+                initial_mode: "Input<Floating>".to_owned(),
+            }],
         },
     ]
 }
@@ -152,6 +145,7 @@ pub fn valid_gpio_bank() -> GpioBankIn {
     GpioBankIn {
         name: "GPIOA".to_owned(),
         pins: valid_gpio_pins(),
+        valid: Valid::default(),
     }
 }
 pub fn expected_gpio_bank() -> GpioBankOut {
@@ -177,20 +171,12 @@ pub fn valid_gpio_pins() -> Vec<GpioPinIn> {
     ]
 }
 pub fn expected_gpio_pins() -> Vec<GpioPinOut> {
-    vec![
-        GpioPinOut {
-            PIN: "PA0".to_owned(),
-            pin: "pa0".to_owned(),
-            n: 0,
-            initial_mode: "Input<Floating>".to_owned(),
-        },
-        GpioPinOut {
-            PIN: "PA1".to_owned(),
-            pin: "pa1".to_owned(),
-            n: 1,
-            initial_mode: "Output<PushPull>".to_owned(),
-        },
-    ]
+    vec![GpioPinOut {
+        PIN: "PA0".to_owned(),
+        pin: "pa0".to_owned(),
+        n: 0,
+        initial_mode: "Input<Floating>".to_owned(),
+    }]
 }
 
 pub fn valid_for_all() -> Valid {

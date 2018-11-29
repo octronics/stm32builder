@@ -1,7 +1,7 @@
 //! A gpio peripheral
 
 use crate::{
-    api::Convertible,
+    api::{Convertible, Validatable},
     device::DeviceIn,
     gpio_bank::{GpioBankIn, GpioBankOut},
     types::DeviceId,
@@ -36,6 +36,7 @@ impl Convertible for GpioIn {
             banks: self
                 .banks
                 .iter()
+                .filter(|bank| bank.is_valid_for(&id, &device))
                 .map(|bank| bank.to_output(&id, &device))
                 .collect(),
         }
@@ -46,6 +47,7 @@ impl Convertible for GpioIn {
 mod tests {
     use super::*;
     use crate::tests::*;
+    use crate::types::Valid;
 
     fn gpio_under_test() -> GpioOut {
         GpioIn {
@@ -54,10 +56,12 @@ mod tests {
                 GpioBankIn {
                     name: "GPIOA".to_owned(),
                     pins: valid_gpio_pins(),
+                    valid: Valid::default(),
                 },
                 GpioBankIn {
                     name: "GPIOB".to_owned(),
                     pins: valid_gpio_pins(),
+                    valid: Valid::default(),
                 },
             ],
         }
