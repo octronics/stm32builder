@@ -6,5 +6,11 @@ layer) for all STM32 microcontrollers.
 
 ## What is it providing?
 
- - A library to decode the stm32 identification number.
- - A command line tool to decode one, display the device information we know about.
+ A library to decode the stm32 identification number, and to generate a device
+ object containing relevant device informations.
+
+ A command line tool (mostly useful to development) that allow to:
+  - `decode` a device identification number,
+  - `show` the device informations found on a device file that match a device
+    identification number,
+  - `print` like `show` but output yaml serialized rust object.
