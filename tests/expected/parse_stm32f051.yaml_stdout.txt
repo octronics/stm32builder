@@ -127,6 +127,81 @@ DeviceIn {
         }
     ],
     peripherals: PeripheralsIn {
-        gpio: None
+        gpio: Some(
+            GpioIn {
+                version: 2,
+                banks: [
+                    GpioBankIn {
+                        name: "GPIOA,",
+                        pins: [
+                            GpioPinIn {
+                                name: "PA0",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA1",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA2",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA3",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA4",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA5",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA6",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA7",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA8",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA9",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA10",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA11",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA12",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA13",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA14",
+                                initial_mode: None
+                            },
+                            GpioPinIn {
+                                name: "PA15",
+                                initial_mode: None
+                            }
+                        ]
+                    }
+                ]
+            }
+        )
     }
 }

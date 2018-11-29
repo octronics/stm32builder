@@ -12,10 +12,10 @@ fn usage() {
     println!("   decode <id>   - Decode an device identification number");
     println!("   parse <device>");
     println!("                 - Print the parsed data found on <device> file before being converted");
-    println!("   show <id> <device> [device|info]");
+    println!("   show <id> <device> [device|info|gpio]");
     println!("                 - Show device informations from <device> file that match <id> device");
     println!("                   Select 'device' to show all data (the default), 'info' for device informations only");
-    println!("   print <id> <device> [device|info]");
+    println!("   print <id> <device> [device|info|gpio]");
     println!("                 - Print device information as passed to template");
     println!("   help          - Print this message");
 }
@@ -31,6 +31,7 @@ enum Cmd {
 enum Data {
     Device,
     Info,
+    Gpio,
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -59,6 +60,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             match data {
                 Data::Device => Ok(println!("{:#?}", device)),
                 Data::Info => Ok(println!("{:#?}", device.info)),
+                Data::Gpio => Ok(println!("{:#?}", device.peripherals.gpio)),
             }
         }
         Print { id, device, data } => {
@@ -66,6 +68,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             Ok(println!("{}", match data {
                 Data::Device => serde_yaml::to_string(&device)?,
                 Data::Info => serde_yaml::to_string(&device.info)?,
+                Data::Gpio => serde_yaml::to_string(&device.peripherals.gpio)?,
             }))
         }
     }
@@ -76,6 +79,7 @@ impl Data {
         match arg {
             "device" => Ok(Data::Device),
             "info" => Ok(Data::Info),
+            "gpio" => Ok(Data::Gpio),
             arg => Err(CliError::UnknownDataArg(arg.to_owned())),
         }
     }

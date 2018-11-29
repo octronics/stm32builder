@@ -12,4 +12,73 @@ info:
   reference: "https://somewhereelse.org/"
   svd: stm32f0x1
 peripherals:
-  gpio: ~
+  gpio:
+    version: 2
+    banks:
+      - GPIO: "GPIOA,"
+        gpio: "gpioa,"
+        pins:
+          - PIN: PA0
+            pin: pa0
+            n: 0
+            initial_mode: Input<Floating>
+          - PIN: PA1
+            pin: pa1
+            n: 1
+            initial_mode: Input<Floating>
+          - PIN: PA2
+            pin: pa2
+            n: 2
+            initial_mode: Input<Floating>
+          - PIN: PA3
+            pin: pa3
+            n: 3
+            initial_mode: Input<Floating>
+          - PIN: PA4
+            pin: pa4
+            n: 4
+            initial_mode: Input<Floating>
+          - PIN: PA5
+            pin: pa5
+            n: 5
+            initial_mode: Input<Floating>
+          - PIN: PA6
+            pin: pa6
+            n: 6
+            initial_mode: Input<Floating>
+          - PIN: PA7
+            pin: pa7
+            n: 7
+            initial_mode: Input<Floating>
+          - PIN: PA8
+            pin: pa8
+            n: 8
+            initial_mode: Input<Floating>
+          - PIN: PA9
+            pin: pa9
+            n: 9
+            initial_mode: Input<Floating>
+          - PIN: PA10
+            pin: pa10
+            n: 1
+            initial_mode: Input<Floating>
+          - PIN: PA11
+            pin: pa11
+            n: 1
+            initial_mode: Input<Floating>
+          - PIN: PA12
+            pin: pa12
+            n: 1
+            initial_mode: Input<Floating>
+          - PIN: PA13
+            pin: pa13
+            n: 1
+            initial_mode: Input<Floating>
+          - PIN: PA14
+            pin: pa14
+            n: 1
+            initial_mode: Input<Floating>
+          - PIN: PA15
+            pin: pa15
+            n: 1
+            initial_mode: Input<Floating>

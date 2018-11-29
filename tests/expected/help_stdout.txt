@@ -2,9 +2,9 @@ Available commands:
    decode <id>   - Decode an device identification number
    parse <device>
                  - Print the parsed data found on <device> file before being converted
-   show <id> <device> [device|info]
+   show <id> <device> [device|info|gpio]
                  - Show device informations from <device> file that match <id> device
                    Select 'device' to show all data (the default), 'info' for device informations only
-   print <id> <device> [device|info]
+   print <id> <device> [device|info|gpio]
                  - Print device information as passed to template
    help          - Print this message
