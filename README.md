@@ -9,6 +9,8 @@ layer) for all STM32 microcontrollers.
  A library to decode the stm32 identification number, and to generate a device
  object containing relevant device informations.
 
+ A support to express the pins available on gpio peripherals.
+
  A command line tool (mostly useful to development) that allow to:
   - `decode` a device identification number,
   - `show` the device informations found on a device file that match a device
