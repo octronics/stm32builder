@@ -7,6 +7,7 @@ use crate::{
     types::DeviceId,
 };
 use serde_derive::{Deserialize, Serialize};
+use std::str::FromStr;
 
 /// A gpio pin (from device file).
 #[derive(Debug, Deserialize)]
@@ -47,6 +48,19 @@ impl Convertible for GpioPinIn {
                 .clone()
                 .unwrap_or("Input<Floating>".to_string()),
         }
+    }
+}
+
+impl FromStr for GpioPinIn {
+    type Err = Error;
+
+    /// Use "PC8" string as gpio pin name.
+    /// Will use the default initial mode.
+    fn from_str(name: &str) -> Result<Self, Error> {
+        Ok(GpioPinIn {
+            name: name.to_string(),
+            initial_mode: None,
+        })
     }
 }
 

@@ -6,6 +6,7 @@ use crate::{
     gpio_pin::{GpioPinIn, GpioPinOut},
     types::DeviceId,
 };
+use serde::de::{Deserialize, Deserializer};
 use serde_derive::{Deserialize, Serialize};
 
 /// A gpio bank (from device file).
@@ -14,6 +15,7 @@ pub struct GpioBankIn {
     /// The gpio bank name.
     pub name: String,
     /// The gpio bank pins.
+    #[serde(deserialize_with = "seq_of_pins_as_string_or_struct")]
     pub pins: Vec<GpioPinIn>,
 }
 
@@ -44,6 +46,19 @@ impl Convertible for GpioBankIn {
                 .collect(),
         }
     }
+}
+
+fn seq_of_pins_as_string_or_struct<'de, D>(deserializer: D) -> Result<Vec<GpioPinIn>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    #[derive(Deserialize)]
+    struct Wrapper(
+        #[serde(deserialize_with = "crate::helpers::serde::string_or_struct")] GpioPinIn,
+    );
+
+    let v = Vec::deserialize(deserializer)?;
+    Ok(v.into_iter().map(|Wrapper(a)| a).collect())
 }
 
 #[cfg(test)]
