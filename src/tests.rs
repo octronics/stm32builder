@@ -113,10 +113,12 @@ pub fn valid_gpio_banks() -> Vec<GpioBankIn> {
                 GpioPinIn {
                     name: "PB0".to_owned(),
                     initial_mode: None,
+                    valid: valid_for_other(),
                 },
                 GpioPinIn {
                     name: "PB1".to_owned(),
                     initial_mode: None,
+                    valid: valid_for_all(),
                 },
             ],
         },
@@ -165,10 +167,12 @@ pub fn valid_gpio_pins() -> Vec<GpioPinIn> {
         GpioPinIn {
             name: "PA0".to_owned(),
             initial_mode: None,
+            valid: valid_for_all(),
         },
         GpioPinIn {
             name: "PA1".to_owned(),
             initial_mode: Some("Output<PushPull>".to_owned()),
+            valid: valid_for_other(),
         },
     ]
 }
@@ -187,4 +191,21 @@ pub fn expected_gpio_pins() -> Vec<GpioPinOut> {
             initial_mode: "Output<PushPull>".to_owned(),
         },
     ]
+}
+
+pub fn valid_for_all() -> Valid {
+    Valid {
+        only_on_packages: None,
+        not_on_packages: None,
+        only_on_parts: None,
+        not_on_parts: None,
+    }
+}
+pub fn valid_for_other() -> Valid {
+    Valid {
+        only_on_packages: None,
+        not_on_packages: None,
+        only_on_parts: None,
+        not_on_parts: Some(vec!["R8".to_owned()]),
+    }
 }

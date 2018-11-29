@@ -65,6 +65,7 @@ where
 mod tests {
     use super::*;
     use crate::tests::*;
+    use crate::types::Valid;
 
     fn bank_under_test() -> GpioBankOut {
         GpioBankIn {
@@ -73,10 +74,12 @@ mod tests {
                 GpioPinIn {
                     name: "pa0".to_owned(),
                     initial_mode: None,
+                    valid: Valid::default(),
                 },
                 GpioPinIn {
                     name: "pa1".to_owned(),
                     initial_mode: None,
+                    valid: Valid::default(),
                 },
             ],
         }

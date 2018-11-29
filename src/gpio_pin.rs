@@ -1,10 +1,9 @@
 //! Gpio peripherals
 
 use crate::{
-    api::Convertible,
-    api::{Error, GpioError},
+    api::{Convertible, Error, GpioError, Validatable},
     device::DeviceIn,
-    types::DeviceId,
+    types::{DeviceId, Valid},
 };
 use serde_derive::{Deserialize, Serialize};
 use std::str::FromStr;
@@ -16,6 +15,9 @@ pub struct GpioPinIn {
     pub name: String,
     /// The gpio pin initial mode.
     pub initial_mode: Option<String>,
+    /// Is this gpio valid?
+    #[serde(flatten)]
+    pub valid: Valid,
 }
 
 /// A gpio pin (to template).
@@ -51,6 +53,13 @@ impl Convertible for GpioPinIn {
     }
 }
 
+impl Validatable for GpioPinIn {
+    /// Is this gpio pin valid for this device?
+    fn is_valid_for(&self, id: &DeviceId, device: &DeviceIn) -> bool {
+        self.valid.is_valid_for(&id, &device)
+    }
+}
+
 impl FromStr for GpioPinIn {
     type Err = Error;
 
@@ -60,6 +69,7 @@ impl FromStr for GpioPinIn {
         Ok(GpioPinIn {
             name: name.to_string(),
             initial_mode: None,
+            valid: Valid::default(),
         })
     }
 }
@@ -84,6 +94,7 @@ mod tests {
         GpioPinIn {
             name: "pa0".to_owned(),
             initial_mode: None,
+            valid: Valid::default(),
         }
         .to_output(&valid_device_id(), &valid_device_in())
     }
@@ -93,6 +104,7 @@ mod tests {
         let pin = GpioPinIn {
             name: "pa".to_owned(),
             initial_mode: None,
+            valid: Valid::default(),
         };
         assert!(pin.pin_number().is_err());
     }
@@ -101,6 +113,7 @@ mod tests {
         let pin = GpioPinIn {
             name: "paa".to_owned(),
             initial_mode: None,
+            valid: Valid::default(),
         };
         assert!(pin.pin_number().is_err());
     }
@@ -109,6 +122,7 @@ mod tests {
         let pin = GpioPinIn {
             name: "pa0".to_owned(),
             initial_mode: None,
+            valid: Valid::default(),
         };
         assert_eq!(pin.pin_number().unwrap(), 0);
     }
@@ -133,6 +147,7 @@ mod tests {
         let pin = GpioPinIn {
             name: "PA3".to_owned(),
             initial_mode: Some("MyMode".to_owned()),
+            valid: Valid::default(),
         }
         .to_output(&valid_device_id(), &valid_device_in());
 
