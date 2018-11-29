@@ -7,6 +7,7 @@ pub use crate::types::DeviceId;
 // Input and output
 pub mod device;
 pub mod device_info;
+pub mod gpio_bank;
 pub mod gpio_pin;
 
 // Internal use
