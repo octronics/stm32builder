@@ -1,0 +1,112 @@
+---
+version: 2
+banks:
+  - GPIO: GPIOA
+    gpio: gpioa
+    pins:
+      - PIN: PA0
+        pin: pa0
+        n: 0
+        initial_mode: Input<Floating>
+      - PIN: PA1
+        pin: pa1
+        n: 1
+        initial_mode: Input<Floating>
+      - PIN: PA2
+        pin: pa2
+        n: 2
+        initial_mode: Input<Floating>
+      - PIN: PA3
+        pin: pa3
+        n: 3
+        initial_mode: Input<Floating>
+      - PIN: PA4
+        pin: pa4
+        n: 4
+        initial_mode: Input<Floating>
+      - PIN: PA5
+        pin: pa5
+        n: 5
+        initial_mode: Input<Floating>
+      - PIN: PA6
+        pin: pa6
+        n: 6
+        initial_mode: Input<Floating>
+      - PIN: PA7
+        pin: pa7
+        n: 7
+        initial_mode: Input<Floating>
+      - PIN: PA8
+        pin: pa8
+        n: 8
+        initial_mode: Input<Floating>
+      - PIN: PA9
+        pin: pa9
+        n: 9
+        initial_mode: Input<Floating>
+      - PIN: PA10
+        pin: pa10
+        n: 1
+        initial_mode: Input<Floating>
+      - PIN: PA11
+        pin: pa11
+        n: 1
+        initial_mode: Input<Floating>
+      - PIN: PA12
+        pin: pa12
+        n: 1
+        initial_mode: Input<Floating>
+      - PIN: PA13
+        pin: pa13
+        n: 1
+        initial_mode: Output<PullUp>
+      - PIN: PA14
+        pin: pa14
+        n: 1
+        initial_mode: Output<PullDown>
+      - PIN: PA15
+        pin: pa15
+        n: 1
+        initial_mode: Input<Floating>
+  - GPIO: GPIOB
+    gpio: gpiob
+    pins:
+      - PIN: PB0
+        pin: pb0
+        n: 0
+        initial_mode: Input<Floating>
+      - PIN: PB1
+        pin: pb1
+        n: 1
+        initial_mode: Input<Floating>
+      - PIN: PB3
+        pin: pb3
+        n: 3
+        initial_mode: Input<Floating>
+      - PIN: PB4
+        pin: pb4
+        n: 4
+        initial_mode: Input<Floating>
+      - PIN: PB5
+        pin: pb5
+        n: 5
+        initial_mode: Input<Floating>
+      - PIN: PB6
+        pin: pb6
+        n: 6
+        initial_mode: Input<Floating>
+      - PIN: PB7
+        pin: pb7
+        n: 7
+        initial_mode: Input<Floating>
+  - GPIO: GPIOF
+    gpio: gpiof
+    pins:
+      - PIN: PF0
+        pin: pf0
+        n: 0
+        initial_mode: Input<Floating>
+      - PIN: PF1
+        pin: pf1
+        n: 1
+        initial_mode: Input<Floating>

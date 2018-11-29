@@ -18,5 +18,94 @@ peripherals:
   gpio:
     version: 2
     banks:
-      - name: GPIOA,
-        pins: [ PA0, PA1, PA2, PA3, PA4, PA5, PA6, PA7, PA8, PA9, PA10, PA11, PA12, PA13, PA14, PA15]
+      - name: GPIOA
+        pins:
+          - PA0
+          - PA1
+          - PA2
+          - PA3
+          - PA4
+          - PA5
+          - PA6
+          - PA7
+          - PA8
+          - PA9
+          - PA10
+          - PA11
+          - PA12
+          - name: PA13
+            initial_mode: Output<PullUp>
+          - name: PA14
+            initial_mode: Output<PullDown>
+          - PA15
+      - name: GPIOB
+        pins:
+          - PB0
+          - PB1
+          - name: PB2
+            not_on_packages: [ LQFP32 ]
+          - PB3
+          - PB4
+          - PB5
+          - PB6
+          - PB7
+          - name: PB8
+            not_on_packages: [ LQFP32, WLCSP36 ]
+          - name: PB9
+            not_on_packages: [ LQFP32, UFQFPN32, WLCSP36 ]
+          - name: PB10
+            not_on_packages: [ LQFP32, UFQFPN32, WLCSP36 ]
+          - name: PB11
+            not_on_packages: [ LQFP32, UFQFPN32, WLCSP36 ]
+          - name: PB12
+            not_on_packages: [ LQFP32, UFQFPN32, WLCSP36 ]
+          - name: PB13
+            not_on_packages: [ LQFP32, UFQFPN32, WLCSP36 ]
+          - name: PB14
+            not_on_packages: [ LQFP32, UFQFPN32, WLCSP36 ]
+          - name: PB15
+            not_on_packages: [ LQFP32, UFQFPN32, WLCSP36 ]
+      - name: GPIOC
+        not_on_packages: [ LQFP32, UFQFPN32 ]
+        pins:
+          - name: PC0
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC1
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC2
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC3
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC4
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC5
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC6
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC7
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC8
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC9
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC10
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC11
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC12
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PC13
+          - name: PC14
+          - name: PC15
+      - name: GPIOD
+        only_on_packages: [ LQFP64, UFBGA64 ]
+        pins:
+          - name: PD2
+      - name: GPIOF
+        pins:
+          - name: PF0
+          - name: PF1
+          - name: PF4
+            only_on_packages: [ LQFP64, UFBGA64 ]
+          - name: PF6
+            not_on_packages: [ WLCSP36, UFQFPN32, LQFP32 ]

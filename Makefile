@@ -20,4 +20,5 @@ update-expected-tests:
 	cargo run -- print stm32f051R8T6 tests/stm32f051.yaml device > tests/expected/print_stm32f051R8T6_stm32f051.yaml_device_stdout.txt
 	cargo run -- print stm32f051R8T6 tests/stm32f051.yaml info > tests/expected/print_stm32f051R8T6_stm32f051.yaml_info_stdout.txt
 	cargo run -- print stm32f051R8T6 tests/stm32f051.yaml gpio > tests/expected/print_stm32f051R8T6_stm32f051.yaml_gpio_stdout.txt
+	cargo run -- print stm32f051K8T6 tests/stm32f051.yaml gpio > tests/expected/print_stm32f051K8T6_stm32f051.yaml_gpio_stdout.txt
 	cargo run -- help > tests/expected/help_stdout.txt

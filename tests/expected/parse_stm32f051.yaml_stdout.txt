@@ -132,7 +132,7 @@ DeviceIn {
                 version: 2,
                 banks: [
                     GpioBankIn {
-                        name: "GPIOA,",
+                        name: "GPIOA",
                         pins: [
                             GpioPinIn {
                                 name: "PA0",
@@ -266,7 +266,9 @@ DeviceIn {
                             },
                             GpioPinIn {
                                 name: "PA13",
-                                initial_mode: None,
+                                initial_mode: Some(
+                                    "Output<PullUp>"
+                                ),
                                 valid: Valid {
                                     not_on_parts: None,
                                     only_on_parts: None,
@@ -276,7 +278,9 @@ DeviceIn {
                             },
                             GpioPinIn {
                                 name: "PA14",
-                                initial_mode: None,
+                                initial_mode: Some(
+                                    "Output<PullDown>"
+                                ),
                                 valid: Valid {
                                     not_on_parts: None,
                                     only_on_parts: None,
@@ -291,6 +295,557 @@ DeviceIn {
                                     not_on_parts: None,
                                     only_on_parts: None,
                                     not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            }
+                        ],
+                        valid: Valid {
+                            not_on_parts: None,
+                            only_on_parts: None,
+                            not_on_packages: None,
+                            only_on_packages: None
+                        }
+                    },
+                    GpioBankIn {
+                        name: "GPIOB",
+                        pins: [
+                            GpioPinIn {
+                                name: "PB0",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB1",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB2",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: Some(
+                                        [
+                                            LQFP32
+                                        ]
+                                    ),
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB3",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB4",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB5",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB6",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB7",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB8",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: Some(
+                                        [
+                                            LQFP32,
+                                            WLCSP36
+                                        ]
+                                    ),
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB9",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: Some(
+                                        [
+                                            LQFP32,
+                                            UFQFPN32,
+                                            WLCSP36
+                                        ]
+                                    ),
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB10",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: Some(
+                                        [
+                                            LQFP32,
+                                            UFQFPN32,
+                                            WLCSP36
+                                        ]
+                                    ),
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB11",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: Some(
+                                        [
+                                            LQFP32,
+                                            UFQFPN32,
+                                            WLCSP36
+                                        ]
+                                    ),
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB12",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: Some(
+                                        [
+                                            LQFP32,
+                                            UFQFPN32,
+                                            WLCSP36
+                                        ]
+                                    ),
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB13",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: Some(
+                                        [
+                                            LQFP32,
+                                            UFQFPN32,
+                                            WLCSP36
+                                        ]
+                                    ),
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB14",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: Some(
+                                        [
+                                            LQFP32,
+                                            UFQFPN32,
+                                            WLCSP36
+                                        ]
+                                    ),
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PB15",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: Some(
+                                        [
+                                            LQFP32,
+                                            UFQFPN32,
+                                            WLCSP36
+                                        ]
+                                    ),
+                                    only_on_packages: None
+                                }
+                            }
+                        ],
+                        valid: Valid {
+                            not_on_parts: None,
+                            only_on_parts: None,
+                            not_on_packages: None,
+                            only_on_packages: None
+                        }
+                    },
+                    GpioBankIn {
+                        name: "GPIOC",
+                        pins: [
+                            GpioPinIn {
+                                name: "PC0",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC1",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC2",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC3",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC4",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC5",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC6",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC7",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC8",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC9",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC10",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC11",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC12",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC13",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC14",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PC15",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            }
+                        ],
+                        valid: Valid {
+                            not_on_parts: None,
+                            only_on_parts: None,
+                            not_on_packages: Some(
+                                [
+                                    LQFP32,
+                                    UFQFPN32
+                                ]
+                            ),
+                            only_on_packages: None
+                        }
+                    },
+                    GpioBankIn {
+                        name: "GPIOD",
+                        pins: [
+                            GpioPinIn {
+                                name: "PD2",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            }
+                        ],
+                        valid: Valid {
+                            not_on_parts: None,
+                            only_on_parts: None,
+                            not_on_packages: None,
+                            only_on_packages: Some(
+                                [
+                                    LQFP64,
+                                    UFBGA64
+                                ]
+                            )
+                        }
+                    },
+                    GpioBankIn {
+                        name: "GPIOF",
+                        pins: [
+                            GpioPinIn {
+                                name: "PF0",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PF1",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: None
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PF4",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: None,
+                                    only_on_packages: Some(
+                                        [
+                                            LQFP64,
+                                            UFBGA64
+                                        ]
+                                    )
+                                }
+                            },
+                            GpioPinIn {
+                                name: "PF6",
+                                initial_mode: None,
+                                valid: Valid {
+                                    not_on_parts: None,
+                                    only_on_parts: None,
+                                    not_on_packages: Some(
+                                        [
+                                            WLCSP36,
+                                            UFQFPN32,
+                                            LQFP32
+                                        ]
+                                    ),
                                     only_on_packages: None
                                 }
                             }
