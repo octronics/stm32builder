@@ -19,7 +19,7 @@ pub struct GpioBankIn {
 
 /// A gpio bank (to template).
 #[allow(non_snake_case)]
-#[derive(Debug, Serialize)]
+#[derive(Debug, PartialEq, Serialize)]
 pub struct GpioBankOut {
     /// The gpio bank type (aka GPIOA).
     pub GPIO: String,

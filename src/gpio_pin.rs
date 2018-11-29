@@ -19,7 +19,7 @@ pub struct GpioPinIn {
 
 /// A gpio pin (to template).
 #[allow(non_snake_case)]
-#[derive(Debug, Serialize)]
+#[derive(Debug, PartialEq, Serialize)]
 pub struct GpioPinOut {
     /// The gpio pin type (aka PA0).
     pub PIN: String,

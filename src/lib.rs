@@ -10,6 +10,7 @@ pub mod device_info;
 pub mod gpio;
 pub mod gpio_bank;
 pub mod gpio_pin;
+pub mod peripherals;
 
 // Internal use
 pub mod api;

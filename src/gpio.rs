@@ -18,7 +18,7 @@ pub struct GpioIn {
 }
 
 /// A gpio peripheral (to template).
-#[derive(Debug, Serialize)]
+#[derive(Debug, PartialEq, Serialize)]
 pub struct GpioOut {
     /// The gpio version
     pub version: u8,
