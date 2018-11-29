@@ -11,3 +11,5 @@ info:
   datasheet: "https://somewhere.org/"
   reference: "https://somewhereelse.org/"
   svd: stm32f0x1
+peripherals:
+  gpio: ~

@@ -1,7 +1,9 @@
 //! Data used on unit tests
 
 // Import all our types
-use crate::{device::*, device_info::*, gpio_pin::*, types::*};
+use crate::{
+    device::*, device_info::*, gpio::*, gpio_bank::*, gpio_pin::*, peripherals::*, types::*,
+};
 
 pub fn valid_device_id() -> DeviceId {
     DeviceId::from_str("stm32f051R8T6").unwrap()
@@ -15,6 +17,7 @@ pub fn valid_device_in() -> DeviceIn {
         name: "stm32f051".to_owned(),
         info: valid_device_info_in(),
         parts: vec![valid_device_part_in(), another_valid_device_part_in()],
+        peripherals: valid_peripherals(),
     }
 }
 pub fn another_valid_device_in() -> DeviceIn {
@@ -22,6 +25,7 @@ pub fn another_valid_device_in() -> DeviceIn {
         name: "stm32f051".to_owned(),
         info: valid_device_info_in(),
         parts: vec![another_valid_device_part_in()],
+        peripherals: valid_peripherals(),
     }
 }
 
@@ -75,6 +79,87 @@ pub fn expected_device_info_out() -> DeviceInfoOut {
     }
 }
 
+pub fn valid_peripherals() -> PeripheralsIn {
+    PeripheralsIn {
+        gpio: Some(valid_gpio()),
+    }
+}
+
+pub fn expected_peripherals() -> PeripheralsOut {
+    PeripheralsOut {
+        gpio: Some(expected_gpio()),
+    }
+}
+
+pub fn valid_gpio() -> GpioIn {
+    GpioIn {
+        version: 2,
+        banks: valid_gpio_banks(),
+    }
+}
+pub fn expected_gpio() -> GpioOut {
+    GpioOut {
+        version: 2,
+        banks: expected_gpio_banks(),
+    }
+}
+
+pub fn valid_gpio_banks() -> Vec<GpioBankIn> {
+    vec![
+        valid_gpio_bank(),
+        GpioBankIn {
+            name: "GPIOB".to_owned(),
+            pins: vec![
+                GpioPinIn {
+                    name: "PB0".to_owned(),
+                    initial_mode: None,
+                },
+                GpioPinIn {
+                    name: "PB1".to_owned(),
+                    initial_mode: None,
+                },
+            ],
+        },
+    ]
+}
+pub fn expected_gpio_banks() -> Vec<GpioBankOut> {
+    vec![
+        expected_gpio_bank(),
+        GpioBankOut {
+            GPIO: "GPIOB".to_owned(),
+            gpio: "gpiob".to_owned(),
+            pins: vec![
+                GpioPinOut {
+                    PIN: "PB0".to_owned(),
+                    pin: "pb0".to_owned(),
+                    n: 0,
+                    initial_mode: "Input<Floating>".to_owned(),
+                },
+                GpioPinOut {
+                    PIN: "PB1".to_owned(),
+                    pin: "pb1".to_owned(),
+                    n: 1,
+                    initial_mode: "Input<Floating>".to_owned(),
+                },
+            ],
+        },
+    ]
+}
+
+pub fn valid_gpio_bank() -> GpioBankIn {
+    GpioBankIn {
+        name: "GPIOA".to_owned(),
+        pins: valid_gpio_pins(),
+    }
+}
+pub fn expected_gpio_bank() -> GpioBankOut {
+    GpioBankOut {
+        GPIO: "GPIOA".to_owned(),
+        gpio: "gpioa".to_owned(),
+        pins: expected_gpio_pins(),
+    }
+}
+
 pub fn valid_gpio_pins() -> Vec<GpioPinIn> {
     vec![
         GpioPinIn {
@@ -83,7 +168,23 @@ pub fn valid_gpio_pins() -> Vec<GpioPinIn> {
         },
         GpioPinIn {
             name: "PA1".to_owned(),
-            initial_mode: None,
+            initial_mode: Some("Output<PushPull>".to_owned()),
+        },
+    ]
+}
+pub fn expected_gpio_pins() -> Vec<GpioPinOut> {
+    vec![
+        GpioPinOut {
+            PIN: "PA0".to_owned(),
+            pin: "pa0".to_owned(),
+            n: 0,
+            initial_mode: "Input<Floating>".to_owned(),
+        },
+        GpioPinOut {
+            PIN: "PA1".to_owned(),
+            pin: "pa1".to_owned(),
+            n: 1,
+            initial_mode: "Output<PushPull>".to_owned(),
         },
     ]
 }

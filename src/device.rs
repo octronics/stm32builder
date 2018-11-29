@@ -3,6 +3,7 @@
 use crate::{
     api::{Convertible, Error},
     device_info::{DeviceInfoIn, DeviceInfoOut, DevicePartIn},
+    peripherals::{PeripheralsIn, PeripheralsOut},
     types::DeviceId,
 };
 use serde_derive::{Deserialize, Serialize};
@@ -17,6 +18,8 @@ pub struct DeviceIn {
     pub info: DeviceInfoIn,
     /// The available parts under this device name.
     pub parts: Vec<DevicePartIn>,
+    /// The device peripherals.
+    pub peripherals: PeripheralsIn,
 }
 
 /// The output device.
@@ -24,6 +27,8 @@ pub struct DeviceIn {
 pub struct DeviceOut {
     /// This device information.
     pub info: DeviceInfoOut,
+    /// The device peripherals.
+    pub peripherals: PeripheralsOut,
 }
 
 impl Convertible for DeviceIn {
@@ -33,6 +38,7 @@ impl Convertible for DeviceIn {
     fn to_output(&self, id: &DeviceId, device: &DeviceIn) -> DeviceOut {
         DeviceOut {
             info: self.info.to_output(&id, &device),
+            peripherals: self.peripherals.to_output(&id, &device),
         }
     }
 }
@@ -81,5 +87,10 @@ mod tests {
         let device = Device::from_id_and_file(&id, &device).unwrap();
 
         assert_eq!(device.info, expected_device_info_out());
+    }
+
+    #[test]
+    fn has_some_peripherals() {
+        assert_eq!(device_under_test().peripherals, expected_peripherals());
     }
 }

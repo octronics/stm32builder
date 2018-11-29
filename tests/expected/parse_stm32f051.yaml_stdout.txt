@@ -125,5 +125,8 @@ DeviceIn {
                 UFBGA64
             ]
         }
-    ]
+    ],
+    peripherals: PeripheralsIn {
+        gpio: None
+    }
 }
