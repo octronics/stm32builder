@@ -28,7 +28,14 @@ pub enum Error {
     BadTemperatureRange,
     UnknownTemperatureRange(String),
     ParseError(YamlError),
+    Gpio(GpioError),
     NoMatchFound,
+}
+
+#[derive(Debug)]
+pub enum GpioError {
+    NoPinNumber(String),
+    InvalidPinNumber(String),
 }
 
 impl Display for Error {
@@ -58,8 +65,21 @@ impl Display for Error {
             }
             ParseError(ref yaml) => yaml.fmt(f),
             NoMatchFound => f.write_str("device id and device file does not match"),
+            Gpio(ref error) => error.fmt(f),
         }
     }
 }
 
 impl StdError for Error {}
+
+impl StdError for GpioError {}
+
+impl Display for GpioError {
+    fn fmt(&self, f: &mut Formatter) -> FmtResult {
+        use self::GpioError::*;
+        match *self {
+            NoPinNumber(ref pin) => write!(f, "pin '{}' has no pin number", pin),
+            InvalidPinNumber(ref pin) => write!(f, "pin number '{}' is not a number", pin),
+        }
+    }
+}
