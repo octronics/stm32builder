@@ -1,7 +1,7 @@
 //! Data used on unit tests
 
 // Import all our types
-use crate::{device::*, device_info::*, types::*};
+use crate::{device::*, device_info::*, gpio_pin::*, types::*};
 
 pub fn valid_device_id() -> DeviceId {
     DeviceId::from_str("stm32f051R8T6").unwrap()
@@ -73,4 +73,17 @@ pub fn expected_device_info_out() -> DeviceInfoOut {
         reference: valid_device_info_in().reference,
         svd: valid_device_info_in().svd,
     }
+}
+
+pub fn valid_gpio_pins() -> Vec<GpioPinIn> {
+    vec![
+        GpioPinIn {
+            name: "PA0".to_owned(),
+            initial_mode: None,
+        },
+        GpioPinIn {
+            name: "PA1".to_owned(),
+            initial_mode: None,
+        },
+    ]
 }
