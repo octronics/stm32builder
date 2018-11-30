@@ -1,9 +1,10 @@
 //! A gpio peripheral
 
 use crate::{
-    api::{Convertible, Validatable},
+    api::{Convertible, PeripheralOnBus, PeripheralsOnBus, Validatable},
     device::DeviceIn,
     gpio_bank::{GpioBankIn, GpioBankOut},
+    peripheral_bus::PeripheralBusOut,
     types::DeviceId,
 };
 use serde_derive::{Deserialize, Serialize};
@@ -43,11 +44,24 @@ impl Convertible for GpioIn {
     }
 }
 
+impl PeripheralsOnBus for GpioIn {
+    fn peripheral_buses(&self, id: &DeviceId, device: &DeviceIn) -> Vec<PeripheralBusOut> {
+        self.banks
+            .iter()
+            .filter(|bank| bank.is_valid_for(&id, &device))
+            .map(|bank| bank.peripheral_bus())
+            .collect()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::tests::*;
-    use crate::types::Valid;
+    use crate::{
+        peripheral_bus::PeripheralBusIn,
+        types::{Bus, Valid},
+    };
 
     fn gpio_under_test() -> GpioOut {
         GpioIn {
