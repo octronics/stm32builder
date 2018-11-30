@@ -1,0 +1,71 @@
+
+
+
+The device stm32f051R8T6 is a R8 part with 8 Kb of memory and 64 Kb of flash on a LQFP64 package.
+
+This is a R8 device.
+
+
+
+id: stm32f051R8T6
+
+PA0 is the GPIOA 0th pin.
+PA1 is the GPIOA 1th pin.
+PA2 is the GPIOA 2th pin.
+PA3 is the GPIOA 3th pin.
+PA4 is the GPIOA 4th pin.
+PA5 is the GPIOA 5th pin.
+PA6 is the GPIOA 6th pin.
+PA7 is the GPIOA 7th pin.
+PA8 is the GPIOA 8th pin.
+PA9 is the GPIOA 9th pin.
+PA10 is the GPIOA 1th pin.
+PA11 is the GPIOA 1th pin.
+PA12 is the GPIOA 1th pin.
+PA13 is the GPIOA 1th pin.
+PA14 is the GPIOA 1th pin.
+PA15 is the GPIOA 1th pin.
+PB0 is the GPIOB 0th pin.
+PB1 is the GPIOB 1th pin.
+PB2 is the GPIOB 2th pin.
+PB3 is the GPIOB 3th pin.
+PB4 is the GPIOB 4th pin.
+PB5 is the GPIOB 5th pin.
+PB6 is the GPIOB 6th pin.
+PB7 is the GPIOB 7th pin.
+PB8 is the GPIOB 8th pin.
+PB9 is the GPIOB 9th pin.
+PB10 is the GPIOB 1th pin.
+PB11 is the GPIOB 1th pin.
+PB12 is the GPIOB 1th pin.
+PB13 is the GPIOB 1th pin.
+PB14 is the GPIOB 1th pin.
+PB15 is the GPIOB 1th pin.
+PC0 is the GPIOC 0th pin.
+PC1 is the GPIOC 1th pin.
+PC2 is the GPIOC 2th pin.
+PC3 is the GPIOC 3th pin.
+PC4 is the GPIOC 4th pin.
+PC5 is the GPIOC 5th pin.
+PC6 is the GPIOC 6th pin.
+PC7 is the GPIOC 7th pin.
+PC8 is the GPIOC 8th pin.
+PC9 is the GPIOC 9th pin.
+PC10 is the GPIOC 1th pin.
+PC11 is the GPIOC 1th pin.
+PC12 is the GPIOC 1th pin.
+PC13 is the GPIOC 1th pin.
+PC14 is the GPIOC 1th pin.
+PC15 is the GPIOC 1th pin.
+PD2 is the GPIOD 2th pin.
+PF0 is the GPIOF 0th pin.
+PF1 is the GPIOF 1th pin.
+PF4 is the GPIOF 4th pin.
+PF6 is the GPIOF 6th pin.
+
+
+gpioa is on AHB.
+gpiob is on AHB.
+gpioc is on AHB.
+gpiod is on AHB.
+gpiof is on AHB.

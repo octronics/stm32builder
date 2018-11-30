@@ -5,7 +5,7 @@ use std::{
     env, env::Args, error::Error, fmt::{Display, Formatter, Result as FmtResult},
     fs::File,
 };
-use stm32builder::{DeviceId, Device, device::DeviceIn};
+use stm32builder::{DeviceId, Device, device::DeviceIn, render, Context};
 
 fn usage() {
     println!("Available commands:");
@@ -17,6 +17,8 @@ fn usage() {
     println!("                   Select 'device' to show all data (the default), 'info' for device informations only");
     println!("   print <id> <device> [device|info|gpio|rcc]");
     println!("                 - Print device information as passed to template");
+    println!("   render <id> <device> <template> <output> [device|info|gpio|rcc]");
+    println!("                 - Render <template> to <output> from <device> informations matching <id>");
     println!("   help          - Print this message");
 }
 
@@ -25,6 +27,7 @@ enum Cmd {
     Parse { device: File },
     Show { id: DeviceId, device: File, data: Data },
     Print { id: DeviceId, device: File, data: Data },
+    Render { id: DeviceId, device: File, template: File, output: File, data: Data },
     Help,
 }
 
@@ -74,6 +77,16 @@ fn main() -> Result<(), Box<dyn Error>> {
                 Data::Rcc => serde_yaml::to_string(&device.peripherals.rcc)?,
             }))
         }
+        Render { id, device, mut template, mut output, data, } => {
+            let device = Device::from_id_and_file(&id, &device)?;
+            let context = Context::new();
+            Ok(match data {
+                Data::Device => render(&device, &mut template, &mut output, &context)?,
+                Data::Info => render(&device.info, &mut template, &mut output, &context)?,
+                Data::Gpio => render(&device.peripherals.gpio, &mut template, &mut output, &context)?,
+                Data::Rcc => render(&device.peripherals.rcc, &mut template, &mut output, &context)?,
+            })
+        }
     }
 }
 
@@ -114,6 +127,13 @@ impl Cmd {
                 id: DeviceId::from_str(&args[2])?,
                 device: File::open(&args[3])?,
                 data: args.get(4).map_or(Data::Device, |arg| Data::from_arg(arg).unwrap()),
+            }),
+            "render" => Ok(Render {
+                id: DeviceId::from_str(&args[2])?,
+                device: File::open(&args[3])?,
+                template: File::open(&args[4])?,
+                output: File::create(&args[5])?,
+                data: args.get(6).map_or(Data::Device, |arg| Data::from_arg(arg).unwrap()),
             }),
             cmd => Err(CliError::UnknownCommand(cmd.to_string()).into()),
         }

@@ -1,0 +1,28 @@
+{{!-- This is a comment --}}
+{{! This is also a comment }}
+
+The device {{info.id}} is a {{info.part}} part with {{info.ram_size}} Kb of memory and {{info.flash_size}} Kb of flash on a {{info.package}} package.
+
+{{# if (str_eq info.part "R8") ~}}
+This is a R8 device.
+{{/ if }}
+
+{{! Use the `with` helper to modify the scope ~}}
+{{# with info ~}}
+{{! Now the field is directly accessible ~}}
+id: {{ id }}
+{{~/ with }}
+
+{{# with peripherals.gpio ~}}
+{{# each banks ~}}
+{{# each pins ~}}
+{{PIN}} is the {{../GPIO}} {{n}}th pin.
+{{/ each ~}}
+{{/ each ~}}
+{{/ with }}
+
+{{# with peripherals.rcc ~}}
+{{# each buses ~}}
+{{peripheral}} is on {{bus}}.
+{{/ each ~}}
+{{/ with ~}}

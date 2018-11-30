@@ -48,3 +48,4 @@ assert_stdout!(main_can_print_the_info: "print" "stm32f051R8T6" "stm32f051.yaml"
 assert_stdout!(main_can_print_the_gpio: "print" "stm32f051R8T6" "stm32f051.yaml" "gpio" );
 assert_stdout!(main_can_print_the_rcc: "print" "stm32f051R8T6" "stm32f051.yaml" "rcc" );
 assert_stdout!(main_can_print_the_gpio_for_other_part: "print" "stm32f051K8T6" "stm32f051.yaml" "gpio" );
+assert_stdout!(main_can_render_a_template: "render" "stm32f051R8T6" "stm32f051.yaml" "template.tmp" "output.tmp" );

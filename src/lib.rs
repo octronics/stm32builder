@@ -1,6 +1,8 @@
 //! This crate provides tools to help building stm32 micro-controller hardware abstraction layer.
 
 // NOTE: Re-export our main API entry point for convenience.
+#[cfg(feature = "render")]
+pub use crate::api::render::{render, Context};
 pub use crate::device::Device;
 pub use crate::types::DeviceId;
 

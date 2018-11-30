@@ -7,4 +7,6 @@ Available commands:
                    Select 'device' to show all data (the default), 'info' for device informations only
    print <id> <device> [device|info|gpio|rcc]
                  - Print device information as passed to template
+   render <id> <device> <template> <output> [device|info|gpio|rcc]
+                 - Render <template> to <output> from <device> informations matching <id>
    help          - Print this message
