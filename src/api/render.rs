@@ -34,6 +34,7 @@ impl Context {
         let mut handlebars = Handlebars::new();
 
         handlebars.register_helper("str_eq", Box::new(StrEqHelper));
+        handlebars.register_helper("low_or_high", Box::new(LowOrHighRegister));
 
         Self { handlebars }
     }
