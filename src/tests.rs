@@ -3,7 +3,7 @@
 // Import all our types
 use crate::{
     device::*, device_info::*, gpio::*, gpio_bank::*, gpio_pin::*, peripheral_bus::*,
-    peripherals::*, types::*,
+    peripherals::*, rcc::*, types::*,
 };
 
 pub fn valid_device_id() -> DeviceId {
@@ -82,13 +82,37 @@ pub fn expected_device_info_out() -> DeviceInfoOut {
 
 pub fn valid_peripherals() -> PeripheralsIn {
     PeripheralsIn {
+        rcc: valid_rcc(),
         gpio: Some(valid_gpio()),
     }
 }
 
 pub fn expected_peripherals() -> PeripheralsOut {
     PeripheralsOut {
+        rcc: expected_rcc(),
         gpio: Some(expected_gpio()),
+    }
+}
+
+pub fn valid_rcc() -> RccIn {
+    RccIn {}
+}
+pub fn expected_rcc() -> RccOut {
+    RccOut {
+        buses: vec![
+            PeripheralBusOut {
+                peripheral: "gpioa".to_owned(),
+                bus: Bus::AHB,
+                field: "IOPA".to_owned(),
+                resetable: true,
+            },
+            PeripheralBusOut {
+                peripheral: "gpiob".to_owned(),
+                bus: Bus::AHB,
+                field: "IOPB".to_owned(),
+                resetable: true,
+            },
+        ],
     }
 }
 

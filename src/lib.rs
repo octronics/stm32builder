@@ -12,6 +12,7 @@ pub mod gpio_bank;
 pub mod gpio_pin;
 pub mod peripheral_bus;
 pub mod peripherals;
+pub mod rcc;
 
 // Internal use
 pub mod api;
