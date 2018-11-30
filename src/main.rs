@@ -12,10 +12,10 @@ fn usage() {
     println!("   decode <id>   - Decode an device identification number");
     println!("   parse <device>");
     println!("                 - Print the parsed data found on <device> file before being converted");
-    println!("   show <id> <device> [device|info|gpio]");
+    println!("   show <id> <device> [device|info|gpio|rcc]");
     println!("                 - Show device informations from <device> file that match <id> device");
     println!("                   Select 'device' to show all data (the default), 'info' for device informations only");
-    println!("   print <id> <device> [device|info|gpio]");
+    println!("   print <id> <device> [device|info|gpio|rcc]");
     println!("                 - Print device information as passed to template");
     println!("   help          - Print this message");
 }
@@ -32,6 +32,7 @@ enum Data {
     Device,
     Info,
     Gpio,
+    Rcc,
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -61,6 +62,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 Data::Device => Ok(println!("{:#?}", device)),
                 Data::Info => Ok(println!("{:#?}", device.info)),
                 Data::Gpio => Ok(println!("{:#?}", device.peripherals.gpio)),
+                Data::Rcc => Ok(println!("{:#?}", device.peripherals.rcc)),
             }
         }
         Print { id, device, data } => {
@@ -69,6 +71,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 Data::Device => serde_yaml::to_string(&device)?,
                 Data::Info => serde_yaml::to_string(&device.info)?,
                 Data::Gpio => serde_yaml::to_string(&device.peripherals.gpio)?,
+                Data::Rcc => serde_yaml::to_string(&device.peripherals.rcc)?,
             }))
         }
     }
@@ -80,6 +83,7 @@ impl Data {
             "device" => Ok(Data::Device),
             "info" => Ok(Data::Info),
             "gpio" => Ok(Data::Gpio),
+            "rcc" => Ok(Data::Rcc),
             arg => Err(CliError::UnknownDataArg(arg.to_owned())),
         }
     }
