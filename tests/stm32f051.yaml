@@ -15,10 +15,14 @@ parts: # Page 11
   - { name: R6, ram: 8, packages: [ LQFP64, UFBGA64 ] }
   - { name: R8, ram: 8, packages: [ LQFP64, UFBGA64 ] }
 peripherals:
+  rcc: {}
   gpio:
     version: 2
     banks:
       - name: GPIOA
+        bus:
+          name: AHB
+          field: IOPA
         pins:
           - PA0
           - PA1
@@ -39,6 +43,9 @@ peripherals:
             initial_mode: Output<PullDown>
           - PA15
       - name: GPIOB
+        bus:
+          name: AHB
+          field: IOPB
         pins:
           - PB0
           - PB1
@@ -66,6 +73,9 @@ peripherals:
           - name: PB15
             not_on_packages: [ LQFP32, UFQFPN32, WLCSP36 ]
       - name: GPIOC
+        bus:
+          name: AHB
+          field: IOPC
         not_on_packages: [ LQFP32, UFQFPN32 ]
         pins:
           - name: PC0
@@ -98,10 +108,16 @@ peripherals:
           - name: PC14
           - name: PC15
       - name: GPIOD
+        bus:
+          name: AHB
+          field: IOPD
         only_on_packages: [ LQFP64, UFBGA64 ]
         pins:
           - name: PD2
       - name: GPIOF
+        bus:
+          name: AHB
+          field: IOPF
         pins:
           - name: PF0
           - name: PF1

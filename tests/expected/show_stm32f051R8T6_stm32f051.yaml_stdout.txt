@@ -30,6 +30,40 @@ DeviceOut {
         svd: "stm32f0x1"
     },
     peripherals: PeripheralsOut {
+        rcc: RccOut {
+            buses: [
+                PeripheralBusOut {
+                    peripheral: "gpioa",
+                    bus: AHB,
+                    field: "IOPA",
+                    resetable: true
+                },
+                PeripheralBusOut {
+                    peripheral: "gpiob",
+                    bus: AHB,
+                    field: "IOPB",
+                    resetable: true
+                },
+                PeripheralBusOut {
+                    peripheral: "gpioc",
+                    bus: AHB,
+                    field: "IOPC",
+                    resetable: true
+                },
+                PeripheralBusOut {
+                    peripheral: "gpiod",
+                    bus: AHB,
+                    field: "IOPD",
+                    resetable: true
+                },
+                PeripheralBusOut {
+                    peripheral: "gpiof",
+                    bus: AHB,
+                    field: "IOPF",
+                    resetable: true
+                }
+            ]
+        },
         gpio: Some(
             GpioOut {
                 version: 2,

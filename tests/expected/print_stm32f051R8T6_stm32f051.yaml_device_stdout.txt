@@ -12,6 +12,28 @@ info:
   reference: "https://somewhereelse.org/"
   svd: stm32f0x1
 peripherals:
+  rcc:
+    buses:
+      - peripheral: gpioa
+        bus: AHB
+        field: IOPA
+        resetable: true
+      - peripheral: gpiob
+        bus: AHB
+        field: IOPB
+        resetable: true
+      - peripheral: gpioc
+        bus: AHB
+        field: IOPC
+        resetable: true
+      - peripheral: gpiod
+        bus: AHB
+        field: IOPD
+        resetable: true
+      - peripheral: gpiof
+        bus: AHB
+        field: IOPF
+        resetable: true
   gpio:
     version: 2
     banks:

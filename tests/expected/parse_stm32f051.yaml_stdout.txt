@@ -127,6 +127,7 @@ DeviceIn {
         }
     ],
     peripherals: PeripheralsIn {
+        rcc: RccIn,
         gpio: Some(
             GpioIn {
                 version: 2,
@@ -304,6 +305,11 @@ DeviceIn {
                             only_on_parts: None,
                             not_on_packages: None,
                             only_on_packages: None
+                        },
+                        bus: PeripheralBusIn {
+                            name: AHB,
+                            field: "IOPA",
+                            resetable: true
                         }
                     },
                     GpioBankIn {
@@ -526,6 +532,11 @@ DeviceIn {
                             only_on_parts: None,
                             not_on_packages: None,
                             only_on_packages: None
+                        },
+                        bus: PeripheralBusIn {
+                            name: AHB,
+                            field: "IOPB",
+                            resetable: true
                         }
                     },
                     GpioBankIn {
@@ -767,6 +778,11 @@ DeviceIn {
                                 ]
                             ),
                             only_on_packages: None
+                        },
+                        bus: PeripheralBusIn {
+                            name: AHB,
+                            field: "IOPC",
+                            resetable: true
                         }
                     },
                     GpioBankIn {
@@ -793,6 +809,11 @@ DeviceIn {
                                     UFBGA64
                                 ]
                             )
+                        },
+                        bus: PeripheralBusIn {
+                            name: AHB,
+                            field: "IOPD",
+                            resetable: true
                         }
                     },
                     GpioBankIn {
@@ -855,6 +876,11 @@ DeviceIn {
                             only_on_parts: None,
                             not_on_packages: None,
                             only_on_packages: None
+                        },
+                        bus: PeripheralBusIn {
+                            name: AHB,
+                            field: "IOPF",
+                            resetable: true
                         }
                     }
                 ]
