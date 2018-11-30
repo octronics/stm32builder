@@ -33,6 +33,8 @@ impl Context {
     pub fn new() -> Self {
         let mut handlebars = Handlebars::new();
 
+        handlebars.register_helper("str_eq", Box::new(StrEqHelper));
+
         Self { handlebars }
     }
 }
