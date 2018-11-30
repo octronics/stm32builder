@@ -1,5 +1,7 @@
 //! Our Error definition module
 
+#[cfg(feature = "render")]
+use handlebars::TemplateRenderError as HandlebarsError;
 use serde_yaml::Error as YamlError;
 use std::{
     error::Error as StdError,
@@ -29,6 +31,8 @@ pub enum Error {
     UnknownTemperatureRange(String),
     ParseError(YamlError),
     Gpio(GpioError),
+    #[cfg(feature = "render")]
+    Render(HandlebarsError),
     NoMatchFound,
 }
 
@@ -66,6 +70,8 @@ impl Display for Error {
             ParseError(ref yaml) => yaml.fmt(f),
             NoMatchFound => f.write_str("device id and device file does not match"),
             Gpio(ref error) => error.fmt(f),
+            #[cfg(feature = "render")]
+            Render(ref error) => error.fmt(f),
         }
     }
 }
