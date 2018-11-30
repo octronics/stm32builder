@@ -57,11 +57,21 @@ mod tests {
                     name: "GPIOA".to_owned(),
                     pins: valid_gpio_pins(),
                     valid: Valid::default(),
+                    bus: PeripheralBusIn {
+                        name: Bus::AHB,
+                        field: "IOPA".to_owned(),
+                        resetable: true,
+                    },
                 },
                 GpioBankIn {
                     name: "GPIOB".to_owned(),
                     pins: valid_gpio_pins(),
                     valid: Valid::default(),
+                    bus: PeripheralBusIn {
+                        name: Bus::AHB,
+                        field: "IOPB".to_owned(),
+                        resetable: true,
+                    },
                 },
             ],
         }

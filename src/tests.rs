@@ -2,7 +2,8 @@
 
 // Import all our types
 use crate::{
-    device::*, device_info::*, gpio::*, gpio_bank::*, gpio_pin::*, peripherals::*, types::*,
+    device::*, device_info::*, gpio::*, gpio_bank::*, gpio_pin::*, peripheral_bus::*,
+    peripherals::*, types::*,
 };
 
 pub fn valid_device_id() -> DeviceId {
@@ -109,6 +110,11 @@ pub fn valid_gpio_banks() -> Vec<GpioBankIn> {
         valid_gpio_bank(),
         GpioBankIn {
             name: "GPIOB".to_owned(),
+            bus: PeripheralBusIn {
+                name: Bus::AHB,
+                field: "IOPB".to_owned(),
+                resetable: true,
+            },
             pins: vec![
                 GpioPinIn {
                     name: "PB0".to_owned(),
@@ -146,6 +152,11 @@ pub fn valid_gpio_bank() -> GpioBankIn {
         name: "GPIOA".to_owned(),
         pins: valid_gpio_pins(),
         valid: Valid::default(),
+        bus: PeripheralBusIn {
+            name: Bus::AHB,
+            field: "IOPA".to_owned(),
+            resetable: true,
+        },
     }
 }
 pub fn expected_gpio_bank() -> GpioBankOut {

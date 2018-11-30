@@ -1,9 +1,10 @@
 //! Gpio bank input and output types
 
 use crate::{
-    api::{Convertible, Validatable},
+    api::{Convertible, PeripheralOnBus, Validatable},
     device::DeviceIn,
     gpio_pin::{GpioPinIn, GpioPinOut},
+    peripheral_bus::{PeripheralBusIn, PeripheralBusOut},
     types::{DeviceId, Valid},
 };
 use serde::de::{Deserialize, Deserializer};
@@ -20,6 +21,8 @@ pub struct GpioBankIn {
     /// This gpio bank is valid
     #[serde(flatten)]
     pub valid: Valid,
+    /// The rcc controlled bus this bank is connected to.
+    pub bus: PeripheralBusIn,
 }
 
 /// A gpio bank (to template).
@@ -58,6 +61,17 @@ impl Validatable for GpioBankIn {
     }
 }
 
+impl PeripheralOnBus for GpioBankIn {
+    fn peripheral_bus(&self) -> PeripheralBusOut {
+        PeripheralBusOut {
+            peripheral: self.name.clone().to_lowercase(),
+            bus: self.bus.name.clone(),
+            field: self.bus.field.clone(),
+            resetable: self.bus.resetable,
+        }
+    }
+}
+
 fn seq_of_pins_as_string_or_struct<'de, D>(deserializer: D) -> Result<Vec<GpioPinIn>, D::Error>
 where
     D: Deserializer<'de>,
@@ -75,7 +89,7 @@ where
 mod tests {
     use super::*;
     use crate::tests::*;
-    use crate::types::Valid;
+    use crate::types::*;
 
     fn bank_under_test() -> GpioBankOut {
         GpioBankIn {
@@ -93,6 +107,11 @@ mod tests {
                 },
             ],
             valid: Valid::default(),
+            bus: PeripheralBusIn {
+                name: Bus::AHB,
+                field: "IOPA".to_string(),
+                resetable: true,
+            },
         }
         .to_output(&valid_device_id(), &valid_device_in())
     }
