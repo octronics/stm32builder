@@ -6,6 +6,10 @@ use std::fmt;
 use std::marker::PhantomData;
 use std::str::FromStr;
 
+pub fn default_true() -> bool {
+    true
+}
+
 pub fn string_or_struct<'de, T, D>(deserializer: D) -> Result<T, D::Error>
 where
     T: Deserialize<'de> + FromStr<Err = Error>,
