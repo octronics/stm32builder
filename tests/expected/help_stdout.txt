@@ -11,4 +11,6 @@ Available commands:
                  - Print device information as passed to template
    render <id> <device> <template> <output> [device|info|gpio|rcc]
                  - Render <template> to <output> from <device> informations matching <id>
+   update-cargo <cargo.toml> <device> [<device> ...]
+                 - Update <cargo.toml> to support all part found in <device>
    help          - Print this message

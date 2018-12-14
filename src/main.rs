@@ -3,7 +3,7 @@
 use self::Cmd::*;
 use std::{
     env, env::Args, error::Error, fmt::{Display, Formatter, Result as FmtResult},
-    fs::File,
+    fs::File, path::{PathBuf}, io::{BufRead, BufReader, Write},
 };
 use stm32builder::{DeviceId, Device, device::DeviceIn, render, Context};
 
@@ -21,6 +21,8 @@ fn usage() {
     println!("                 - Print device information as passed to template");
     println!("   render <id> <device> <template> <output> [device|info|gpio|rcc]");
     println!("                 - Render <template> to <output> from <device> informations matching <id>");
+    println!("   update-cargo <cargo.toml> <device> [<device> ...]");
+    println!("                 - Update <cargo.toml> to support all part found in <device>");
     println!("   help          - Print this message");
 }
 
@@ -31,6 +33,7 @@ enum Cmd {
     Show { id: DeviceId, device: File, data: Data },
     Print { id: DeviceId, device: File, data: Data },
     Render { id: DeviceId, device: File, template: File, output: File, data: Data },
+    UpdateCargo { cargo_toml: PathBuf, devices: Vec<PathBuf> },
     Help,
 }
 
@@ -40,6 +43,9 @@ enum Data {
     Gpio,
     Rcc,
 }
+
+const CARGO_TOML_MARKER: &str =
+    "# WARNING: After this line all will be overriden when generating the crate";
 
 fn main() -> Result<(), Box<dyn Error>> {
     match Cmd::from_args(env::args())? {
@@ -98,6 +104,53 @@ fn main() -> Result<(), Box<dyn Error>> {
                 Data::Rcc => render(&device.peripherals.rcc, &mut template, &mut output, &context)?,
             })
         }
+        UpdateCargo { cargo_toml, devices } => {
+            // Extract the cargo preamble by reading `Cargo.toml` line by line until the marker
+            // line is found.
+            let mut preamble = String::new();
+            for line in BufReader::new(File::open(&cargo_toml)?)
+                .lines()
+                .filter_map(|line| line.ok())
+                .take_while(|line| line != CARGO_TOML_MARKER)
+            {
+                preamble.push_str(&line);
+                preamble.push_str("\n");
+            }
+
+            // Add the marker line (ensure it exists in case of empty `Cargo.toml`).
+            preamble.push_str(CARGO_TOML_MARKER);
+            preamble.push_str("\n");
+
+            println!("Updates {} with device part numbers found on:", cargo_toml.display());
+
+            // Write the cargo preamble.
+            let mut cargo_toml = File::create(&cargo_toml)?;
+            cargo_toml.write(preamble.as_bytes())?;
+
+            for file in devices {
+                // Parse the device file
+                let device = File::open(&file)?;
+                let device = DeviceIn::from_file(&device)?;
+
+                // Visualy separate the cargo features generated from a device file to facilitate
+                // debugging by adding a comment line.
+                write!(cargo_toml, "# From {}\n", file.display())?;
+
+                for part in device.parts {
+                    for option in part.parts {
+                        // Compose the device's part number from the device's name, the part's name
+                        // and the available part's option.
+                        let id = format!("{}{}{}", &device.name, &part.name.0, option);
+
+                        // Add a cargo feature for the device's part number and make it depends on
+                        // the stm32hal module that map device's svd file to rust code.
+                        write!(cargo_toml, "{} = [\"stm32ral/{}\"]\n", id, &device.info.svd)?;
+                    }
+                }
+                println!("\t{}", file.display());
+            }
+            Ok(())
+        }
     }
 }
 
@@ -148,6 +201,10 @@ impl Cmd {
                 template: File::open(&args[4])?,
                 output: File::create(&args[5])?,
                 data: args.get(6).map_or(Data::Device, |arg| Data::from_arg(arg).unwrap()),
+            }),
+            "update-cargo" => Ok(UpdateCargo {
+                cargo_toml: args.get(2).unwrap().into(),
+                devices: args.get(3..).unwrap().to_vec().iter().map(|file| file.into()).collect(),
             }),
             cmd => Err(CliError::UnknownCommand(cmd.to_string()).into()),
         }
