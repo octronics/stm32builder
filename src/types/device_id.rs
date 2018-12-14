@@ -100,6 +100,7 @@ impl DeviceId {
         if !pin_count.bytes().all(is_ascii_alphabetic) {
             return Err(Error::BadPinCount);
         }
+        let pin_count = pin_count.to_ascii_uppercase();
         let flash_size = Self::flash_size_from_str(id).ok_or(Error::NoFlashSize)?;
         if !flash_size.bytes().all(is_ascii_digit) {
             return Err(Error::BadFlashSize);
@@ -108,14 +109,24 @@ impl DeviceId {
         if !package_type.bytes().all(is_ascii_alphabetic) {
             return Err(Error::BadPackageType);
         }
+        let package_type = package_type.to_ascii_uppercase();
         let temperature_range =
             Self::temperature_range_from_str(id).ok_or(Error::NoTemperatureRange)?;
         if !temperature_range.bytes().all(is_ascii_digit) {
             return Err(Error::BadTemperatureRange);
         }
+
+        let mut new_id = String::new();
+        new_id.push_str(Self::header_from_str(id).unwrap());
+        new_id.push_str(Self::family_from_str(id).unwrap());
+        new_id.push_str(Self::sub_family_from_str(id).unwrap());
+        new_id.push_str(&pin_count);
+        new_id.push_str(&flash_size);
+        new_id.push_str(&package_type);
+        new_id.push_str(&temperature_range);
         Ok(DeviceId {
-            id: id.to_string(),
-            package: Package::from_pin_and_package_str(pin_count, package_type)?,
+            id: new_id,
+            package: Package::from_pin_and_package_str(&pin_count, &package_type)?,
             flash_size: FlashSize::from_flash_size_str(flash_size)?,
             temperature: TemperatureRange::from_temperature_range_str(temperature_range)?,
         })
