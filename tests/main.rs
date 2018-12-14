@@ -15,6 +15,8 @@ macro_rules! assert_stdout {
             // Use cargo run to not having to store the binary path
             let mut child = Command::new("cargo")
                 .arg("run")
+                .arg("--bin")
+                .arg("stm32builder")
                 .arg("--")
                 $( .arg($arg) )*
                 .stdout(Stdio::piped())
@@ -33,19 +35,19 @@ macro_rules! assert_stdout {
     };
 }
 
-assert_stdout!(main_have_an_help_command: "help");
-assert_stdout!(main_can_decode_a_device_id: "decode" "stm32f051R8T6" );
-assert_stdout!(main_can_parse_a_device: "parse" "stm32f051.yaml" );
-assert_stdout!(main_can_show_a_device: "show" "stm32f051R8T6" "stm32f051.yaml" );
-assert_stdout!(main_fail_to_show_unmatch_device: "show" "stm32l042R8T6" "stm32f051.yaml" ); // not real id
-assert_stdout!(main_can_show_the_whole_device: "show" "stm32f051R8T6" "stm32f051.yaml" "device" );
-assert_stdout!(main_can_show_the_whole_info: "show" "stm32f051R8T6" "stm32f051.yaml" "info" );
-assert_stdout!(main_can_show_the_whole_gpio: "show" "stm32f051R8T6" "stm32f051.yaml" "gpio" );
-assert_stdout!(main_can_show_the_whole_rcc: "show" "stm32f051R8T6" "stm32f051.yaml" "rcc" );
-assert_stdout!(main_can_print_a_device: "print" "stm32f051R8T6" "stm32f051.yaml" );
-assert_stdout!(main_can_print_the_whole_device: "print" "stm32f051R8T6" "stm32f051.yaml" "device" );
-assert_stdout!(main_can_print_the_info: "print" "stm32f051R8T6" "stm32f051.yaml" "info" );
-assert_stdout!(main_can_print_the_gpio: "print" "stm32f051R8T6" "stm32f051.yaml" "gpio" );
-assert_stdout!(main_can_print_the_rcc: "print" "stm32f051R8T6" "stm32f051.yaml" "rcc" );
-assert_stdout!(main_can_print_the_gpio_for_other_part: "print" "stm32f051K8T6" "stm32f051.yaml" "gpio" );
-assert_stdout!(main_can_render_a_template: "render" "stm32f051R8T6" "stm32f051.yaml" "template.tmp" "output.tmp" );
+assert_stdout!(stm32builder_have_an_help_command: "help");
+assert_stdout!(stm32builder_can_decode_a_device_id: "decode" "stm32f051R8T6" );
+assert_stdout!(stm32builder_can_parse_a_device: "parse" "stm32f051.yaml" );
+assert_stdout!(stm32builder_can_show_a_device: "show" "stm32f051R8T6" "stm32f051.yaml" );
+assert_stdout!(stm32builder_fail_to_show_unmatch_device: "show" "stm32l042R8T6" "stm32f051.yaml" ); // not real id
+assert_stdout!(stm32builder_can_show_the_whole_device: "show" "stm32f051R8T6" "stm32f051.yaml" "device" );
+assert_stdout!(stm32builder_can_show_the_whole_info: "show" "stm32f051R8T6" "stm32f051.yaml" "info" );
+assert_stdout!(stm32builder_can_show_the_whole_gpio: "show" "stm32f051R8T6" "stm32f051.yaml" "gpio" );
+assert_stdout!(stm32builder_can_show_the_whole_rcc: "show" "stm32f051R8T6" "stm32f051.yaml" "rcc" );
+assert_stdout!(stm32builder_can_print_a_device: "print" "stm32f051R8T6" "stm32f051.yaml" );
+assert_stdout!(stm32builder_can_print_the_whole_device: "print" "stm32f051R8T6" "stm32f051.yaml" "device" );
+assert_stdout!(stm32builder_can_print_the_info: "print" "stm32f051R8T6" "stm32f051.yaml" "info" );
+assert_stdout!(stm32builder_can_print_the_gpio: "print" "stm32f051R8T6" "stm32f051.yaml" "gpio" );
+assert_stdout!(stm32builder_can_print_the_rcc: "print" "stm32f051R8T6" "stm32f051.yaml" "rcc" );
+assert_stdout!(stm32builder_can_print_the_gpio_for_other_part: "print" "stm32f051K8T6" "stm32f051.yaml" "gpio" );
+assert_stdout!(stm32builder_can_render_a_template: "render" "stm32f051R8T6" "stm32f051.yaml" "template.tmp" "output.tmp" );
