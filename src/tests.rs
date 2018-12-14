@@ -55,6 +55,7 @@ pub fn valid_device_part_in() -> DevicePartIn {
         name: valid_part(),
         ram: valid_ram_size(),
         packages: vec![valid_package(), Package::UFBGA64],
+        parts: vec!["T6".to_owned(), "T7".to_owned()],
     }
 }
 
@@ -63,6 +64,7 @@ pub fn another_valid_device_part_in() -> DevicePartIn {
         name: Part("C8".to_owned()),
         ram: RamSize(8),
         packages: vec![Package::LQFP48, Package::UFQFPN48],
+        parts: vec!["T7".to_owned()],
     }
 }
 

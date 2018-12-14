@@ -4,16 +4,17 @@ info:
   reference: https://somewhereelse.org/
   svd: stm32f0x1
 parts: # Page 11
-  - { name: K4, ram: 8, packages: [ LQFP32, UFQFPN32 ] }
-  - { name: K6, ram: 8, packages: [ LQFP32, UFQFPN32 ] }
-  - { name: K8, ram: 8, packages: [ LQFP32, UFQFPN32 ] }
-  - { name: T8, ram: 8, packages: [ WLCSP36 ] }
-  - { name: C4, ram: 8, packages: [ LQFP48, UFQFPN48 ] }
-  - { name: C6, ram: 8, packages: [ LQFP48, UFQFPN48 ] }
-  - { name: C8, ram: 8, packages: [ LQFP48, UFQFPN48 ] }
-  - { name: R4, ram: 8, packages: [ LQFP64, UFBGA64 ] }
-  - { name: R6, ram: 8, packages: [ LQFP64, UFBGA64 ] }
-  - { name: R8, ram: 8, packages: [ LQFP64, UFBGA64 ] }
+       # https://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus/stm32-mainstream-mcus/stm32f0-series/stm32f0x1/stm32f051r4.html#samplebuy-scroll
+  - { name: K4, ram: 8, packages: [ LQFP32 ], parts: [ T6 ] }
+  - { name: K6, ram: 8, packages: [ LQFP32 ], parts: [ T6, T7 ] }
+  - { name: K8, ram: 8, packages: [ LQFP32, UFQFPN32 ], parts: [ T6, T7, H7 ] }
+  - { name: T8, ram: 8, packages: [ WLCSP36 ],  parts: [ Y6 ] }
+  - { name: C4, ram: 8, packages: [ LQFP48, UFQFPN48 ], parts: [ T6, U6 ] }
+  - { name: C6, ram: 8, packages: [ LQFP48, UFQFPN48 ], parts: [ T6, T7, U6 ] }
+  - { name: C8, ram: 8, packages: [ LQFP48, UFQFPN48 ], parts: [ T6, T7, U6, U7 ] }
+  - { name: R4, ram: 8, packages: [ LQFP64, UFBGA64 ], parts: [ T6 ] }
+  - { name: R6, ram: 8, packages: [ LQFP64, UFBGA64 ], parts: [ T6, T7 ] }
+  - { name: R8, ram: 8, packages: [ LQFP64, UFBGA64 ], parts: [ T6, T7, H7 ] }
 peripherals:
   rcc: {}
   gpio:

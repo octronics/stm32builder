@@ -16,6 +16,8 @@ pub struct DevicePartIn {
     pub ram: RamSize,
     /// All the available packages for this part.
     pub packages: Vec<Package>,
+    /// Available parts reference.
+    pub parts: Vec<String>,
 }
 
 /// Device information (from device file).
