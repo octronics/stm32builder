@@ -12,6 +12,8 @@ fn usage() {
     println!("   decode <id>   - Decode an device identification number");
     println!("   parse <device>");
     println!("                 - Print the parsed data found on <device> file before being converted");
+    println!("   list <device>");
+    println!("                 - List all devices this <device> file support");
     println!("   show <id> <device> [device|info|gpio|rcc]");
     println!("                 - Show device informations from <device> file that match <id> device");
     println!("                   Select 'device' to show all data (the default), 'info' for device informations only");
@@ -25,6 +27,7 @@ fn usage() {
 enum Cmd {
     Decode { id: DeviceId },
     Parse { device: File },
+    List { device: File },
     Show { id: DeviceId, device: File, data: Data },
     Print { id: DeviceId, device: File, data: Data },
     Render { id: DeviceId, device: File, template: File, output: File, data: Data },
@@ -58,6 +61,14 @@ fn main() -> Result<(), Box<dyn Error>> {
         Parse { device } => {
             let device = DeviceIn::from_file(&device)?;
             Ok(println!("{:#?}", device))
+        }
+        List { device } => {
+            let device = DeviceIn::from_file(&device)?;
+            let device_name = device.name;
+            Ok(device.parts.iter().for_each(|part| {
+                let part_name = &part.name.0;
+                part.parts.iter().for_each(|part| println!("{}{}{}", device_name, part_name, part));
+            }))
         }
         Show { id, device, data } => {
             let device = Device::from_id_and_file(&id, &device)?;
@@ -116,6 +127,9 @@ impl Cmd {
             }),
             "help" => Ok(Help),
             "parse" => Ok(Parse {
+                device: File::open(&args[2])?,
+            }),
+            "list" => Ok(List {
                 device: File::open(&args[2])?,
             }),
             "show" => Ok(Show {
