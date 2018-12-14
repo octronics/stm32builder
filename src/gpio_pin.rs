@@ -78,7 +78,7 @@ impl GpioPinIn {
     fn pin_number(&self) -> Result<u8, Error> {
         let pin = self
             .name
-            .get(2..=2)
+            .get(2..)
             .ok_or_else(|| Error::Gpio(GpioError::NoPinNumber(self.name.to_owned())))?;
         pin.parse::<u8>()
             .map_err(|_| Error::Gpio(GpioError::InvalidPinNumber(pin.to_owned())))
