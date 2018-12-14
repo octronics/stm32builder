@@ -46,27 +46,27 @@ banks:
         initial_mode: Input<Floating>
       - PIN: PA10
         pin: pa10
-        n: 1
+        n: 10
         initial_mode: Input<Floating>
       - PIN: PA11
         pin: pa11
-        n: 1
+        n: 11
         initial_mode: Input<Floating>
       - PIN: PA12
         pin: pa12
-        n: 1
+        n: 12
         initial_mode: Input<Floating>
       - PIN: PA13
         pin: pa13
-        n: 1
+        n: 13
         initial_mode: Output<PullUp>
       - PIN: PA14
         pin: pa14
-        n: 1
+        n: 14
         initial_mode: Output<PullDown>
       - PIN: PA15
         pin: pa15
-        n: 1
+        n: 15
         initial_mode: Input<Floating>
   - GPIO: GPIOB
     gpio: gpiob

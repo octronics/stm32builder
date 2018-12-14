@@ -2,6 +2,8 @@ Available commands:
    decode <id>   - Decode an device identification number
    parse <device>
                  - Print the parsed data found on <device> file before being converted
+   list <device>
+                 - List all devices this <device> file support
    show <id> <device> [device|info|gpio|rcc]
                  - Show device informations from <device> file that match <id> device
                    Select 'device' to show all data (the default), 'info' for device informations only

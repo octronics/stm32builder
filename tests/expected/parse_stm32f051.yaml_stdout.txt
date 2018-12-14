@@ -14,8 +14,10 @@ DeviceIn {
                 8
             ),
             packages: [
-                LQFP32,
-                UFQFPN32
+                LQFP32
+            ],
+            parts: [
+                "T6"
             ]
         },
         DevicePartIn {
@@ -26,8 +28,11 @@ DeviceIn {
                 8
             ),
             packages: [
-                LQFP32,
-                UFQFPN32
+                LQFP32
+            ],
+            parts: [
+                "T6",
+                "T7"
             ]
         },
         DevicePartIn {
@@ -40,6 +45,11 @@ DeviceIn {
             packages: [
                 LQFP32,
                 UFQFPN32
+            ],
+            parts: [
+                "T6",
+                "T7",
+                "H7"
             ]
         },
         DevicePartIn {
@@ -51,6 +61,9 @@ DeviceIn {
             ),
             packages: [
                 WLCSP36
+            ],
+            parts: [
+                "Y6"
             ]
         },
         DevicePartIn {
@@ -63,6 +76,10 @@ DeviceIn {
             packages: [
                 LQFP48,
                 UFQFPN48
+            ],
+            parts: [
+                "T6",
+                "U6"
             ]
         },
         DevicePartIn {
@@ -75,6 +92,11 @@ DeviceIn {
             packages: [
                 LQFP48,
                 UFQFPN48
+            ],
+            parts: [
+                "T6",
+                "T7",
+                "U6"
             ]
         },
         DevicePartIn {
@@ -87,6 +109,12 @@ DeviceIn {
             packages: [
                 LQFP48,
                 UFQFPN48
+            ],
+            parts: [
+                "T6",
+                "T7",
+                "U6",
+                "U7"
             ]
         },
         DevicePartIn {
@@ -99,6 +127,9 @@ DeviceIn {
             packages: [
                 LQFP64,
                 UFBGA64
+            ],
+            parts: [
+                "T6"
             ]
         },
         DevicePartIn {
@@ -111,6 +142,10 @@ DeviceIn {
             packages: [
                 LQFP64,
                 UFBGA64
+            ],
+            parts: [
+                "T6",
+                "T7"
             ]
         },
         DevicePartIn {
@@ -123,11 +158,18 @@ DeviceIn {
             packages: [
                 LQFP64,
                 UFBGA64
+            ],
+            parts: [
+                "T6",
+                "T7",
+                "H7"
             ]
         }
     ],
     peripherals: PeripheralsIn {
-        rcc: RccIn,
+        rcc: Some(
+            RccIn
+        ),
         gpio: Some(
             GpioIn {
                 version: 2,

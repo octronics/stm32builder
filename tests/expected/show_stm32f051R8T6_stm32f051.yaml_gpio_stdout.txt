@@ -69,37 +69,37 @@ Some(
                     GpioPinOut {
                         PIN: "PA10",
                         pin: "pa10",
-                        n: 1,
+                        n: 10,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PA11",
                         pin: "pa11",
-                        n: 1,
+                        n: 11,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PA12",
                         pin: "pa12",
-                        n: 1,
+                        n: 12,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PA13",
                         pin: "pa13",
-                        n: 1,
+                        n: 13,
                         initial_mode: "Output<PullUp>"
                     },
                     GpioPinOut {
                         PIN: "PA14",
                         pin: "pa14",
-                        n: 1,
+                        n: 14,
                         initial_mode: "Output<PullDown>"
                     },
                     GpioPinOut {
                         PIN: "PA15",
                         pin: "pa15",
-                        n: 1,
+                        n: 15,
                         initial_mode: "Input<Floating>"
                     }
                 ]
@@ -171,37 +171,37 @@ Some(
                     GpioPinOut {
                         PIN: "PB10",
                         pin: "pb10",
-                        n: 1,
+                        n: 10,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PB11",
                         pin: "pb11",
-                        n: 1,
+                        n: 11,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PB12",
                         pin: "pb12",
-                        n: 1,
+                        n: 12,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PB13",
                         pin: "pb13",
-                        n: 1,
+                        n: 13,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PB14",
                         pin: "pb14",
-                        n: 1,
+                        n: 14,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PB15",
                         pin: "pb15",
-                        n: 1,
+                        n: 15,
                         initial_mode: "Input<Floating>"
                     }
                 ]
@@ -273,37 +273,37 @@ Some(
                     GpioPinOut {
                         PIN: "PC10",
                         pin: "pc10",
-                        n: 1,
+                        n: 10,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PC11",
                         pin: "pc11",
-                        n: 1,
+                        n: 11,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PC12",
                         pin: "pc12",
-                        n: 1,
+                        n: 12,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PC13",
                         pin: "pc13",
-                        n: 1,
+                        n: 13,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PC14",
                         pin: "pc14",
-                        n: 1,
+                        n: 14,
                         initial_mode: "Input<Floating>"
                     },
                     GpioPinOut {
                         PIN: "PC15",
                         pin: "pc15",
-                        n: 1,
+                        n: 15,
                         initial_mode: "Input<Floating>"
                     }
                 ]
