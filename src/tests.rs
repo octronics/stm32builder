@@ -82,14 +82,14 @@ pub fn expected_device_info_out() -> DeviceInfoOut {
 
 pub fn valid_peripherals() -> PeripheralsIn {
     PeripheralsIn {
-        rcc: valid_rcc(),
+        rcc: Some(valid_rcc()),
         gpio: Some(valid_gpio()),
     }
 }
 
 pub fn expected_peripherals() -> PeripheralsOut {
     PeripheralsOut {
-        rcc: expected_rcc(),
+        rcc: Some(expected_rcc()),
         gpio: Some(expected_gpio()),
     }
 }
