@@ -4,14 +4,16 @@ use crate::api::Error;
 use serde_derive::{Deserialize, Serialize};
 
 macro_rules! define_package {
-    ( $($package:tt as $type:tt => { $( $pin:tt => $PACKAGE:tt, )+ }, )+ ) => {
+    ( $($package:tt as $type:tt => { $( $pin:tt => $PACKAGE:tt$( =  $ALIAS:tt)*, )+ }, )+ ) => {
 
         /// The possible device packaging
         /// Encoded as the pair of the 10th caracter (for the pin count) and the 11th character
         /// (for the package type) of the device identification number.
+        // NOTE Some package types are encoded with the same package code. Support alias to write
+        // the package type as the datasheet named it.
         #[derive(Debug, Clone, PartialEq, Deserialize, Serialize)]
         pub enum Package {
-            $($( $PACKAGE, )+)+
+            $($( $PACKAGE, $( $ALIAS, )? )+)+
         }
 
         impl Package {
@@ -49,16 +51,27 @@ define_package!(
         "K" => LQFP32,
         "C" => LQFP48,
         "R" => LQFP64,
+        "V" => LQFP100,
+        "Z" => LQFP144,
     },
-    "H" as UFBGA => {
-        "R" => UFBGA64,
+    "I" as UFBGA => {
+        "V" => UFBGA100,
     },
-    "U" as UFQFPN => {
+    "H" as BGA => { // UF or LF
+        "R" => BGA64 = UFBGA64 = TFBGA64,
+        "V" => LFBGA100,
+        "Z" => LFBGA144,
+    },
+    "U" as QFPN => { // UF of VF
+        "U" => UFQFPN28,
         "K" => UFQFPN32,
+        "T" => QFPN36 = UFQFPN36 = VFQFPN36,
         "C" => UFQFPN48,
     },
     "Y" as WLCSP => {
+        "E" => WLCSP25,
         "T" => WLCSP36,
+        "R" => WLCSP64,
     },
 );
 
