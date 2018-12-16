@@ -1,0 +1,2 @@
+Updates Cargo-toml with device part numbers found on:
+	stm32f051.yaml

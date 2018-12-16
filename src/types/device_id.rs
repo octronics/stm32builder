@@ -131,6 +131,14 @@ impl DeviceId {
             temperature: TemperatureRange::from_temperature_range_str(temperature_range)?,
         })
     }
+
+    pub fn datasheet_url(&self) -> String {
+        format!(
+            "https://www.st.com/resource/en/datasheet/{}{}.pdf",
+            self.name(),
+            self.part()
+        )
+    }
 }
 
 #[cfg(test)]

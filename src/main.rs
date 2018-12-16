@@ -62,6 +62,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 "   temperature: {} min to {} max",
                 id.temperature.min, id.temperature.max
             );
+            println!("    datasheet: {}", id.datasheet_url());
             Ok(())
         }
         Parse { device } => {

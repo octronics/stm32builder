@@ -1,6 +1,6 @@
 # This is a false Cargo.toml used for testing stm32builder update-cargo command.
 # WARNING: After this line all will be overriden when generating the crate
-# From tests/stm32f051.yaml
+# From stm32f051.yaml
 stm32f051K4T6 = ["stm32ral/stm32f0x1"]
 stm32f051K6T6 = ["stm32ral/stm32f0x1"]
 stm32f051K6T7 = ["stm32ral/stm32f0x1"]

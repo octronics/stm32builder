@@ -32,8 +32,7 @@ pub fn another_valid_device_in() -> DeviceIn {
 
 pub fn valid_device_info_in() -> DeviceInfoIn {
     DeviceInfoIn {
-        datasheet: "https://somewhere.org/".to_owned(),
-        reference: "https://somewhereelse.org/".to_owned(),
+        reference: "RefManual".to_owned(),
         svd: "stm32f0x1".to_owned(),
     }
 }
@@ -76,8 +75,8 @@ pub fn expected_device_info_out() -> DeviceInfoOut {
         flash_size: valid_device_id().flash_size,
         ram_size: valid_ram_size(),
         temperature: valid_device_id().temperature,
-        datasheet: valid_device_info_in().datasheet,
-        reference: valid_device_info_in().reference,
+        datasheet_url: valid_device_id().datasheet_url(),
+        reference_url: crate::device_info::reference_url(&valid_device_info_in().reference),
         svd: valid_device_info_in().svd,
     }
 }

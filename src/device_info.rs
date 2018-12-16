@@ -23,9 +23,7 @@ pub struct DevicePartIn {
 /// Device information (from device file).
 #[derive(Debug, Deserialize)]
 pub struct DeviceInfoIn {
-    /// The device datasheet url.
-    pub datasheet: String,
-    /// The device reference manual url.
+    /// The device reference manual name.
     pub reference: String,
     /// The device svd name (without the trailing `.svd`).
     pub svd: String,
@@ -47,9 +45,9 @@ pub struct DeviceInfoOut {
     /// The device temperature range.
     pub temperature: TemperatureRange,
     /// The device datasheet url.
-    pub datasheet: String,
+    pub datasheet_url: String,
     /// The device reference manual url.
-    pub reference: String,
+    pub reference_url: String,
     /// The device svd name (without trailing `.svd`).
     pub svd: String,
 }
@@ -83,8 +81,8 @@ impl DeviceInfoOut {
             flash_size: id.flash_size.clone(),
             ram_size: part.ram.clone(),
             temperature: id.temperature.clone(),
-            datasheet: info.datasheet.clone(),
-            reference: info.reference.clone(),
+            datasheet_url: id.datasheet_url(),
+            reference_url: reference_url(&info.reference),
             svd: info.svd.clone(),
         }
     }
@@ -95,6 +93,14 @@ impl Validatable for DevicePartIn {
     fn is_valid_for(&self, id: &DeviceId, _device: &DeviceIn) -> bool {
         self.name == Part(id.part().to_owned()) && self.packages.contains(&id.package)
     }
+}
+
+// Used within tests
+pub(crate) fn reference_url(name: &str) -> String {
+    format!(
+        "https://www.st.com/resource/en/reference_manual/{}.pdf",
+        name
+    )
 }
 
 #[cfg(test)]
@@ -142,15 +148,15 @@ mod tests {
     #[test]
     fn device_info_out_has_correct_datasheet() {
         assert_eq!(
-            device_info_under_test().datasheet,
-            "https://somewhere.org/".to_owned()
+            device_info_under_test().datasheet_url,
+            valid_device_id().datasheet_url()
         );
     }
     #[test]
     fn device_info_out_has_correct_reference() {
         assert_eq!(
-            device_info_under_test().reference,
-            "https://somewhereelse.org/".to_owned()
+            device_info_under_test().reference_url,
+            reference_url("RefManual")
         );
     }
     #[test]

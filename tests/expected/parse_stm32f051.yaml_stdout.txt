@@ -1,8 +1,7 @@
 DeviceIn {
     name: "stm32f051",
     info: DeviceInfoIn {
-        datasheet: "https://somewhere.org/",
-        reference: "https://somewhereelse.org/",
+        reference: "RefManual",
         svd: "stm32f0x1"
     },
     parts: [

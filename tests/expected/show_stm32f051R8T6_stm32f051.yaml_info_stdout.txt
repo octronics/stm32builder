@@ -24,7 +24,7 @@ DeviceInfoOut {
         min: -40,
         max: 85
     },
-    datasheet: "https://somewhere.org/",
-    reference: "https://somewhereelse.org/",
+    datasheet_url: "https://www.st.com/resource/en/datasheet/stm32f051R8.pdf",
+    reference_url: "https://www.st.com/resource/en/reference_manual/RefManual.pdf",
     svd: "stm32f0x1"
 }

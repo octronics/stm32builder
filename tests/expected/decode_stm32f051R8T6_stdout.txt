@@ -6,3 +6,4 @@
        package: LQFP64
     flash size: 64
    temperature: -40 min to 85 max
+    datasheet: https://www.st.com/resource/en/datasheet/stm32f051R8.pdf

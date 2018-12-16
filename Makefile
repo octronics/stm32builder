@@ -25,5 +25,5 @@ update-expected-tests:
 	$(stm32builder) print stm32f051R8T6 tests/stm32f051.yaml rcc > tests/expected/print_stm32f051R8T6_stm32f051.yaml_rcc_stdout.txt
 	$(stm32builder) print stm32f051K8T6 tests/stm32f051.yaml gpio > tests/expected/print_stm32f051K8T6_stm32f051.yaml_gpio_stdout.txt
 	$(stm32builder) render stm32f051R8T6 tests/stm32f051.yaml tests/template.tmp tests/output.tmp > tests/expected/render_stm32f051R8T6_stm32f051.yaml_template.tmp_output.tmp_stdout.txt
-	$(stm32builder) update-cargo tests/Cargo.toml tests/stm32f051.yaml > tests/expected/update-cargo_Cargo.toml_stm32f051.yaml_stdout.txt
+	cd tests && $(stm32builder) update-cargo Cargo-toml stm32f051.yaml > expected/update-cargo_Cargo-toml_stm32f051.yaml_stdout.txt
 	$(stm32builder) help > tests/expected/help_stdout.txt
